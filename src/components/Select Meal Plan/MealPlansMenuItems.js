@@ -1,0 +1,208 @@
+import React,{useState,useEffect, useRef} from 'react'
+import './SelectMealPlan.css' 
+import veg_icon from '../../assets/vegicon.png'
+
+import axios from '../../axiosInstance';
+import NonvegComponent from '../veg non veg component/NonvegComponent.js'
+import VegComponent from '../veg non veg component/VegComponent.js'
+ 
+export default function MealPlansMenuItems(props){
+    console.log(props)
+   
+    const [likeColor,setLikeColor] = useState("fa fa-heart-o heart_border_selectedMeal")
+    const [menuItems,setMenuItems] = useState([])
+    const selectCounter = useRef(0);
+    const [maxBuy ,setMaxBuy] = useState(0);
+    const[user,setUser ]=useState({});
+
+
+    // const [changeColor ,setColorChange] = useState("#8bc53f");
+ 
+    
+
+    useEffect(() => {
+        var max_buy = parseInt(props.category.max_buy)
+        console.log(max_buy)
+        setMaxBuy(max_buy)
+        axios.get(`menu-items?menu_id=`+props.category.menu_id+`&menu_category_id=`+props.category.id, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`
+            }
+        }).then((res) => {
+            console.log(res.data.data)  
+            setMenuItems(res.data.data)
+            
+        })
+        axios.get(`user`,{
+                    
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`
+            }
+        }).then((res) => {
+            console.log(res)
+            
+            setUser(res.data)
+       
+           
+        })
+
+       
+
+    }, [props.category.menu_id,props.category.id, props.max_buy])
+    
+    
+    function colorHandle(){
+        likeColor === "fa fa-heart-o heart_border_selectedMeal" ? setLikeColor("fa fa-heart heart_submodule_selectMeal_fill") : setLikeColor("fa fa-heart-o heart_border_selectedMeal")
+        
+        
+    }
+
+   
+
+
+
+    function handleSelect(e,menuItem){
+        console.log(e)
+    //     selectColor ==="Select" ?  setSelectColor("Selected") : setSelectColor("Select");
+         
+    //    changeColor === "#8bc53f" ? setColorChange("blue") :  setColorChange("#8bc53f");
+        var buttonText = e.target.innerHTML;
+        console.log(buttonText);
+        var buttonElement = document.getElementById(e.target.id)
+        console.log(buttonElement);
+
+        if(buttonText === "Select"){
+        if(maxBuy > selectCounter.current){
+            selectCounter.current = selectCounter.current + 1;
+            buttonElement.style.backgroundColor="#8bc53f";
+            buttonElement.style.color="#fff"
+            buttonElement.innerHTML="Selected"; 
+            console.log(selectCounter)
+            console.log(maxBuy)
+            axios.post(`my-menu-orders`, {
+                user_id: user.id,
+                menu_item_id: menuItem.id,
+                menu_category_id: menuItem.menu_category_id,
+                meal_purchase_id: 1, 
+                status: user.status,
+                kcal: 1800,
+                menu_item_date: "2020-11-26 06:50:41",
+                menu_item_day: menuItem.day, 
+                menu_item_name: menuItem.name,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                mobile: user.mobile,
+                delivery_address: user.primary_address_line1,
+                delivery_time: 0,
+                notes: "" 
+            }).then((res) => {
+                console.log(res.data.data)  
+            
+            }) .catch((err) => console.log(err));
+            
+        }
+        }else{
+            selectCounter.current = selectCounter.current - 1;
+            buttonElement.style.backgroundColor="transparent";
+            buttonElement.style.color="#000"
+            buttonElement.innerHTML="Select";
+            buttonElement.style.border = "1px solid #8bc53f";
+            console.log(selectCounter)
+            console.log(maxBuy)
+            axios.delete(`my-menu-orders`, {
+               
+            }).then((res) => {
+                console.log(res.data.data)  
+            
+            }) .catch((err) => console.log(err));
+    
+        }
+        console.log(menuItem)
+      
+       
+     } 
+
+
+
+
+    const renderMenuDatas = menuItems.map((menuItem) =>{
+    
+        if(menuItem.day  === props.selectedDay){
+            return(
+                <div className="select_meal_plan_main_container" key={Math.random()}>
+    
+            <div className="card fullcard_container_selectedmeal">
+            <div className="row">
+            
+            <div className="col-md-6 col-sm-12">
+            
+            <div className="row">
+            <div className="col-md-4 col-sm-12">
+            <img src={menuItem.picture} alt="food" className="rounded-circle card_img_rounded_SelectedMeal"></img>
+            </div>
+            <div className="col-md-8 col-sm-12 left_side_container_selectMeal">
+            <h5 className=" salad_text" >{menuItem.name}</h5>
+            {/* <h5 className=" salad_details_text"> About dish like crunch with something chrunchy and salad  About dish like crunch with something chrunchy and salad</h5> */}
+            {/* <img src={veg_icon} alt="veg" className="veg_icon"></img> */}
+
+            {menuItem.veg === 0 ? <VegComponent/> :   <NonvegComponent/>}
+            </div>
+            
+            </div>
+            
+             
+            
+            </div>
+             
+            <div className="vertical_line_Selectedmeal"></div>
+            <div className="col-md-5 col-sm-12"> 
+            <div className="row">
+            <div className="col-md-9 col-sm-12">
+            
+            <h5 className="breakfast_paragrapgh_content">Let us know if there is something you’d want us to know about your menu, we’ll pass it on to the chef.</h5>
+            
+            <textarea className="textarea_container_selectmeal" id="w3review" name="w3review" rows="3" placeholder="Enter your notes here" cols="20">
+            </textarea>
+            
+            </div>
+            <div className="col-md-3 col-sm-12 col_grid_selectmeal">
+            <div className="heart_icon_meal">  
+            
+            <i className={likeColor} aria-hidden="true" onClick={colorHandle}></i>
+           
+            </div>
+            
+             
+
+            <button id={Math.random()}   className="btn btn-default mealbtn_selectmeal" onClick ={(e) => handleSelect(e,menuItem)}>
+            Select
+            
+            </button>
+        
+            
+             
+            
+            
+            
+            </div>
+            </div>
+            </div>
+            
+            </div>
+            </div>
+            </div>
+            )
+
+        }
+       
+    })
+
+    return(
+        
+        <>
+        <h5 className="breakfast_title_selectmeal" key={Math.random()}>{props.category.name}</h5>
+        {renderMenuDatas}
+        </>
+        
+    )    
+} 
