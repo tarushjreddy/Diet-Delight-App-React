@@ -1,185 +1,298 @@
-import React,{useState, useEffect} from 'react'
-import './BMiMain.css'
-import BmiQueandTextfield from './BmiQueandTextfield'
-// import { Link ,useHistory} from 'react-router-dom';
-import axios from '../../axiosInstance';
+import React, { useState, useEffect } from "react";
+import "./BMiMain.css";
+import BmiQueandTextfield from "./BmiQueandTextfield";
+import { Link ,useHistory} from 'react-router-dom';
+import axios from "../../axiosInstance";
+import { makeStyles } from '@material-ui/core/styles';
+import ReactDOM from 'react-dom';
+import SimpleSlider from './slider.js';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
+// import getMuiTheme from 'material-ui/styles/getMuiTheme';
+// import { MuiThemeProvider } from 'material-ui';
+const useStyles = makeStyles({
+  root: {
+    width: 300,
+  },
+});
 
 
-export default function BmiMain(props){
+// const muiTheme = getMuiTheme({
+//   slider: {
+//     trackColor: "yellow",
+//     selectionColor: "red"
+//   }
+// });
 
-    const[height,setHeight] = useState(0);
-    const[weight,setWeight] = useState(0);
-    const[age,setAge] = useState(0);
-    const[gender,setGender] = useState(0);
+
+function valuetext(value) {
+  return `${value}°C`;
+}
+
+export default function BmiMain(props) {
+    const [val, setVal] = useState([30,40])
+    const [height, setHeight] = useState(0);
+    const [weight, setWeight] = useState(0);
+    const [age, setAge] = useState(0);
+    const [gender, setGender] = useState(0);
 
     const validateOnlyNumeric = (data, relatedTo) => {
-
-        console.log(data, relatedTo)
-        var numeric = '^[0-9]*$'
-        if(data.match(numeric)){
-            if(relatedTo === 'weight'){
-                setWeight(data)
-            }else if(relatedTo === 'height'){
-                setHeight(data)
-            }else{
-                setAge(data)
+        console.log(data, relatedTo);
+        var numeric = "^[0-9]*$";
+        if (data.match(numeric)) {
+            if (relatedTo === "weight") {
+                setWeight(data);
+            } else if (relatedTo === "height") {
+                setHeight(data);
+            } else {
+                setAge(data);
             }
         }
-    }
+    };
 
     const calculateBMI = () => {
-        let heightInMeter = height/100;
-        let BmiScoreWithoutFixDecimal = weight/(heightInMeter * heightInMeter);
+        let heightInMeter = height / 100;
+        let BmiScoreWithoutFixDecimal = weight / (heightInMeter * heightInMeter);
         let BmiScore = BmiScoreWithoutFixDecimal.toFixed(1);
         let calorieInTake = null;
-        let category = '';
-        console.log(heightInMeter, BmiScore)
-        if(BmiScore < 18.5){
-            category = 'Under Weight';
-            if(gender === 'male'){
+        let category = "";
+        console.log(heightInMeter, BmiScore);
+        if (BmiScore < 18.5) {
+            category = "Under Weight";
+            if (gender === "male") {
                 calorieInTake = 1800;
-            }else{
+            } else {
                 calorieInTake = 1600;
             }
-            console.log(calorieInTake)
-        handleNavigation(BmiScore,heightInMeter,category, calorieInTake)
-
-        }else if(BmiScore >= 18.5 && BmiScore <= 24.9){
-            category = 'Normal Weight'
-            if(gender === 'male'){
+            console.log(calorieInTake);
+            handleNavigation(BmiScore, heightInMeter, category, calorieInTake);
+        } else if (BmiScore >= 18.5 && BmiScore <= 24.9) {
+            category = "Normal Weight";
+            if (gender === "male") {
                 calorieInTake = 1400;
-            }else{
+            } else {
                 calorieInTake = 1200;
             }
-            console.log(calorieInTake)
-        handleNavigation(BmiScore,heightInMeter,category, calorieInTake)
-
-        }else if(BmiScore >= 25 && BmiScore <= 29.9){
-            category = 'OverWeight'
-            if(gender === 'male'){
+            console.log(calorieInTake);
+            handleNavigation(BmiScore, heightInMeter, category, calorieInTake);
+        } else if (BmiScore >= 25 && BmiScore <= 29.9) {
+            category = "OverWeight";
+            if (gender === "male") {
                 calorieInTake = 1400;
-            }else{
+            } else {
                 calorieInTake = 1200;
             }
-            console.log(calorieInTake)
-        handleNavigation(BmiScore,heightInMeter,category, calorieInTake)
-
-        }else{
-            category = 'Obesity'
-            if(gender === 'male'){
+            console.log(calorieInTake);
+            handleNavigation(BmiScore, heightInMeter, category, calorieInTake);
+        } else {
+            category = "Obesity";
+            if (gender === "male") {
                 calorieInTake = 1600;
-            }else{
+            } else {
                 calorieInTake = 1400;
             }
-            console.log(calorieInTake)
-        handleNavigation(BmiScore,heightInMeter,category, calorieInTake)
-
+            console.log(calorieInTake);
+            handleNavigation(BmiScore, heightInMeter, category, calorieInTake);
         }
+    };
 
-    }
-
-    const handleNavigation = (BmiScore,heightInMeter,category,calorieInTake) => {
-        let genderInNumber = gender === 'male' ? 0 : 1;
+    const handleNavigation = (
+        BmiScore,
+        heightInMeter,
+        category,
+        calorieInTake
+    ) => {
+        let genderInNumber = gender === "male" ? 0 : 1;
         let bmiInString = BmiScore.toString();
         let calorieInTakeString = calorieInTake.toString();
-        axios.put('user',{
-            age: age,
-            gender: genderInNumber,
-            bmi: bmiInString,
-            recommended_calories: calorieInTakeString,
-          })
-          .then((res) => {
-            console.log(res)
-            if(res.status === 200){
-                alert("Updated Successfully");
-                props.toggleReportBMI(BmiScore,heightInMeter,category,calorieInTake)
-            }
-        })
-    }
+        axios
+            .put("user", {
+                age: age,
+                gender: genderInNumber,
+                bmi: bmiInString,
+                recommended_calories: calorieInTakeString,
+            })
+            .then((res) => {
+                console.log(res);
+                if (res.status === 200) {
+                    alert("Updated Successfully");
+                    props.toggleReportBMI(
+                        BmiScore,
+                        heightInMeter,
+                        category,
+                        calorieInTake
+                    );
+                }
+            });
+    };
 
+    return ( <
+        div className = "bmi_main_container" >
+        <
+        div className = "row row_bmi" >
+        <
+        div className = "card card_bmi" >
+        <
+        div className = "icon_container_remove" >
+        <
+        i className = "fa fa-times icon_remove_icon"
+        onClick = {
+            () => props.closeBMI()
+        } >
+        <
+        /i> < /
+        div >
 
-    return(
-        
-        
-        
-        <div className="bmi_main_container">
-        
-        
-        
-        <div className="row row_bmi">
-        
-        <div className="card card_bmi">
-        
-        <div className="icon_container_remove">
-        <i className="fa fa-times icon_remove_icon" onClick={() => props.closeBMI()}></i>
-        </div>
-        
-        <h6 className="title_bmi">Let"s calculate your BMI</h6>
-        
-        <div className="row row_bmi_bmi">
-        <div className="col-md-6 col-sm-12 col_container">
-        
-        <h6 className="ques_title_bmi">What is your gender?</h6>
-        
-        <div className="row icon_container_main_bmi">
-        <div className="icon_container_bmi" id="maleContainer" onClick={() => {
-            var selectMaleContainer = document.getElementById('maleContainer');
-            var selectMale = document.getElementById('male')
-            selectMale.style.color = '#fff';
-            selectMaleContainer.style.background = '#8BC441';
-            var selectFemaleContainer = document.getElementById('femaleContainer');
-            var selectFemale = document.getElementById('female')
-            selectFemale.style.color = '#000';
-            selectFemaleContainer.style.background = '#fff';
-            setGender("male")
-            console.log("male")}}>
-        <i className="fa fa-mars icon_bmi" id="male" aria-hidden="true" ></i>
-        <h6 className="male_text_btn_bmi">Male</h6>
-        </div>
-        
-        <div className="icon_container_bmi" id="femaleContainer" onClick={() => {
-            var selectFemaleContainer = document.getElementById('femaleContainer');
-            var selectFemale = document.getElementById('female')
-            selectFemale.style.color = '#fff';
-            selectFemaleContainer.style.background = '#8BC441';
-            var selectMaleContainer = document.getElementById('maleContainer');
-            var selectMale = document.getElementById('male')
-            selectMale.style.color = '#000';
-            selectMaleContainer.style.background = '#fff';
-            setGender("female")
-            console.log("female")}}>
-        <i className="fa fa-venus icon_bmi" aria-hidden="true" id="female"></i>
-        <h6 className="male_text_btn_bmi">Female</h6>
-        </div>
-        
-        </div>
-        
-        </div>
+        <
+        h6 className = "title_bmi" > Let "s calculate your BMI</h6>
+    <div style={{display:"flex", flexDirection:"row", alignItems: 'center', width:"1000px", margin:"0px", padding:"0px", justifyContent: 'center', }}>
+        <
+        div className = "row row_bmi_bmi" >
+        <
+        div className = "col-md-6 col-sm-12 col_container" >
+       
     
+        <
+        h6 className = "ques_title_bmi" > What is your gender ? < /h6>
+
+        <
+        div className = "row icon_container_main_bmi" >
+        <
+        div className = "icon_container_bmi"
+        id = "maleContainer"
+        onClick = {
+            () => {
+                var selectMaleContainer = document.getElementById(
+                    "maleContainer"
+                );
+                var selectMale = document.getElementById("male");
+                selectMale.style.color = "#fff";
+                selectMaleContainer.style.background = "#8BC441";
+                var selectFemaleContainer = document.getElementById(
+                    "femaleContainer"
+                );
+                var selectFemale = document.getElementById("female");
+                selectFemale.style.color = "#000";
+                selectFemaleContainer.style.background = "#fff";
+                setGender("male");
+                console.log("male");
+            }
+        } >
+        <
+        i className = "fa fa-mars icon_bmi"
+        id = "male"
+        aria-hidden = "true" >
+        <
+        /i> <
+        h6 className = "male_text_btn_bmi" > Male < /h6> < /
+        div >
+
+        <
+        div className = "icon_container_bmi"
+        id = "femaleContainer"
+        onClick = {
+            () => {
+                var selectFemaleContainer = document.getElementById(
+                    "femaleContainer"
+                );
+                var selectFemale = document.getElementById("female");
+                selectFemale.style.color = "#fff";
+                selectFemaleContainer.style.background = "#8BC441";
+                var selectMaleContainer = document.getElementById(
+                    "maleContainer"
+                );
+                var selectMale = document.getElementById("male");
+                selectMale.style.color = "#000";
+                selectMaleContainer.style.background = "#fff";
+                setGender("female");
+                console.log("female");
+            }
+        } >
+        <
+        i className = "fa fa-venus icon_bmi"
+        aria-hidden = "true"
+        id = "female" >
+        <
+        /i> <
+        h6 className = "male_text_btn_bmi" > Female < /h6> < /
+        div > <
+        /div> < /
+        div >
+             </div>
         
-        <BmiQueandTextfield bmiQuestion="What is your weight? (kg)" id="weight" captureChange={validateOnlyNumeric} userData={weight} question="weight" />
-        
-        <BmiQueandTextfield bmiQuestion="What is your height?  (cm)" captureChange={validateOnlyNumeric} userData={height} question="height"/>
-        
-        <BmiQueandTextfield bmiQuestion="What is your age? " id="age" captureChange={validateOnlyNumeric} userData={age} question="age"/>
-        
-        
-        
-        
-        </div>
-        <div className="btn_next_container">
-        <button className="btn btn_next_bmi" onClick={() => calculateBMI()}>Next</button>
-        </div>
-        
-        </div>
-        
-        
-        </div>
-        
-        </div>
-        
-        
-        
-        
-        )
-    }
+ 
+<div style={{display: "flex", flexDirection:"column", alignItems:"center"}} >
+<Typography id="discrete-slider-small-steps" gutterBottom>
+  Age
+</Typography>
+
+
+  <Slider
+  style={{width:180, margin: 4, color:"#8bc441"}} 
+
+  defaultValue={30}
+        getAriaValueText={valuetext}
+        aria-labelledby="discrete-slider"
+        valueLabelDisplay="auto"
+        step={10}
+        marks
+        min={10}
+        max={110}
+      
+      />
+     </div>
+
+    <div style={{display: "flex", flexDirection:"column", alignItems:"center", marginLeft:"20px"}} >
+<Typography id="discrete-slider-small-steps" gutterBottom>
+  Height
+</Typography>
+
+
+  <Slider
+  style={{width:180, margin: 4 , color:"#8bc441"}} 
+  defaultValue={30}
+        getAriaValueText={valuetext}
+        aria-labelledby="discrete-slider"
+        valueLabelDisplay="auto"
+        step={10}
+        marks
+        min={10}
+        max={110}
+      
+      /></div>
+      <div style={{display: "flex", flexDirection:"column", alignItems:"center", marginLeft:"20px"}} >
+<Typography id="discrete-slider-small-steps" gutterBottom>
+  Weight
+</Typography>
+
+
+  <Slider
+  style={{width:180, margin: 4, color:"#8bc441"}} 
+  defaultValue={30}
+        getAriaValueText={valuetext}
+        aria-labelledby="discrete-slider"
+        valueLabelDisplay="auto"
+        step={10}
+        marks
+        min={10}
+        max={110}
+      
+      /></div>
+      </div>
+
+        <
+        /div> <
+        div className = "btn_next_container" >
+        <
+        button className = "btn btn_next_bmi"
+        onClick = {
+            () => calculateBMI()
+        } >
+        Next <
+        /button> < /
+        div > <
+        /div> < /
+        div > 
+    );
+}

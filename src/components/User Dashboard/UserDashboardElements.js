@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import backgroundImage from "./sample.png";
+import backgroundImage from "./sample.jpeg";
 
 export const LeadContainer = styled.div`
   position: relative;
@@ -16,13 +16,11 @@ export const LeadContainer = styled.div`
 export const GrandContainer = styled.div`
   display: flex;
   height: auto;
-
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
   border-radius: 20px;
   margin-top: 3%;
-
   margin-right: 10%;
   border: none;
   @media only screen and (max-width: 750px) {
@@ -86,7 +84,7 @@ export const MainContainer = styled.div`
 export const UpperContainer = styled.div`
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: left;
   width: 100%;
   margin-top: 2%;
   @media only screen and (max-width: 750px) {
@@ -127,7 +125,7 @@ export const InsideCircleText = styled.span`
   height: auto;
   font-size: 60px;
   color: #fff;
-  font-weight: 900;
+  font-weight: 700;
 `;
 
 export const UpperRightContainerText = styled.span`
@@ -138,38 +136,36 @@ export const UpperRightContainerText = styled.span`
 
 export const LeftContainer = styled.div`
   height: auto;
-  width: 50%;
+  width: auto;
   font-weight: 500;
   @media only screen and (max-width: 750px) {
     width: auto;
     height: auto;
   }
-
   @media only screen and (min-width: 1440px) {
     margin-bottom: 20px;
     margin-top: 20px;
   }
 `;
-export const RightContainer = styled.div`
-  height: auto;
-  width: 50%;
-  border-left: 1px solid grey;
-  @media only screen and (max-width: 750px) {
-    width: auto;
-    height: auto;
-    border: none;
-  }
-  @media only screen and (min-width: 1440px) {
-    margin-bottom: 20px;
-    margin-top: 20px;
-  }
-`;
+// export const RightContainer = styled.div`
+//   height: auto;
+//   width: 50%;
+//   border-left: 1px solid grey;
+//   @media only screen and (max-width: 750px) {
+//     width: auto;
+//     height: auto;
+//     border: none;
+//   }
+//   @media only screen and (min-width: 1440px) {
+//     margin-bottom: 20px;
+//     margin-top: 20px;
+//   }
+// `;
 
 export const ForeFrontText = styled.div`
   margin-left: 5%;
   width: 30%;
   font-weight: 700;
-
   @media only screen and (max-width: 945px) {
     width: 30%;
     height: auto;
@@ -185,7 +181,6 @@ export const FormContent = styled.div`
   flex-direction: row;
   margin-top: 3%;
   font-weight: 700;
-
   @media only screen and (max-width: 750px) {
     flex-direction: row;
     width: 100%;
@@ -268,7 +263,6 @@ export const EmailInput = styled.input.attrs((props) => ({
     padding: 0;
     margin-right: 10%;
   }
-
   @media only screen and (max-width: 600px) {
     margin-left: 15%;
   }
@@ -300,7 +294,6 @@ export const TextArea = styled.textarea.attrs((props) => ({
     margin: 0;
     padding: 0;
     margin-right: 10%;
-
     @media only screen and (max-width: 600px) {
       margin-left: 10%;
     }

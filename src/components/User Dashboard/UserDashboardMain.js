@@ -216,12 +216,14 @@ export default function UserDashboardMain() {
               </h2>{" "}
             </UpperLeftContainer>{" "}
             <UpperMiddleContainer>
+              {" "}
               <RoundCircle>
-                <InsideCircleText>10</InsideCircleText>{" "}
+                {" "}
+                <InsideCircleText>
+                  {" "}
+                  {parseFloat(user.bmi).toFixed(1)}{" "}
+                </InsideCircleText>{" "}
               </RoundCircle>{" "}
-              {/* <BMIButton onClick={() => setToggleBMI(true)}>
-                RECALCULATE BMI{" "}
-              </BMIButton>{" "} */}
             </UpperMiddleContainer>{" "}
             <UpperRightContainerText
               style={{
@@ -241,11 +243,17 @@ export default function UserDashboardMain() {
           >
             <LeftContainer>
               <FormContent>
-                <ForeFrontText> First Name </ForeFrontText>{" "}
+                <ForeFrontText> {user.first_name} </ForeFrontText> / /{" "}
                 <Input
                   style={{ background: "white" }}
                   defaultValue={user.first_name}
                   disabled={editProfile}
+                  style={{
+                    border: "none",
+                    textDecoration: "none",
+                    background: "none",
+                    color: "black",
+                  }}
                   onChange={(e) => {
                     console.log(e.target.value);
                     setFirstName(e.target.value);
@@ -253,27 +261,39 @@ export default function UserDashboardMain() {
                 ></Input>{" "}
               </FormContent>{" "}
               <FormContent>
-                <ForeFrontText> Last Name </ForeFrontText>{" "}
+                <ForeFrontText> {user.last_name} </ForeFrontText>{" "}
                 <Input
                   style={{ background: "white" }}
                   defaultValue={user.last_name}
                   disabled={editProfile}
-                  onChange={(e) => setLastName(e.target.value)}
+                  style={{
+                    border: "none",
+                    textDecoration: "none",
+                    background: "none",
+                    color: "black",
+                  }}
+                  //onChange={(e) => setLastName(e.target.value)}
                 ></Input>{" "}
               </FormContent>{" "}
               <FormContent>
-                <ForeFrontText> Email </ForeFrontText>{" "}
+                <ForeFrontText> {user.email} </ForeFrontText>{" "}
                 <EmailInput
                   style={{ background: "white" }}
                   defaultValue={user.email}
                   disabled={editProfile}
-                  onChange={(e) => setEmail(e.target.value)}
+                  style={{
+                    border: "none",
+                    textDecoration: "none",
+                    background: "none",
+                  }}
+                  //onChange={(e) => setEmail(e.target.value)}
                 ></EmailInput>{" "}
               </FormContent>{" "}
               <FormContent>
-                <ForeFrontText> Age </ForeFrontText>{" "}
+                <ForeFrontText> {user.age} </ForeFrontText>{" "}
                 <Input
                   defaultValue={user.age}
+                  disabled={editProfile}
                   style={{
                     border: "none",
                     textDecoration: "none",
@@ -282,9 +302,10 @@ export default function UserDashboardMain() {
                 ></Input>{" "}
               </FormContent>{" "}
               <FormContent>
-                <ForeFrontText> Gender </ForeFrontText>{" "}
+                <ForeFrontText> {userGender} </ForeFrontText>{" "}
                 <Input
                   defaultValue={userGender}
+                  disabled={editProfile}
                   style={{
                     border: "none",
                     textDecoration: "none",
@@ -293,85 +314,51 @@ export default function UserDashboardMain() {
                 ></Input>{" "}
               </FormContent>{" "}
               <FormContent>
-                <ForeFrontText> Username </ForeFrontText>{" "}
-                <Input
-                  defaultValue={user.email}
-                  style={{
-                    border: "none",
-                    textDecoration: "none",
-                    background: "none",
-                  }}
-                ></Input>{" "}
-              </FormContent>{" "}
-              <FormContent>
-                <ForeFrontText> Password </ForeFrontText>{" "}
-                <Anchor
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setToggleChangePassword(true);
-                  }}
-                >
-                  Change{" "}
-                </Anchor>{" "}
-              </FormContent>{" "}
-            </LeftContainer>{" "}
-            <RightContainer>
-              <FormContent>
-                <ForeFrontText> Primary Address Line1 </ForeFrontText>{" "}
+                <ForeFrontText> Primary Address </ForeFrontText>{" "}
                 <TextArea
                   style={{ background: "white" }}
                   defaultValue={user.primary_address_line1}
                   disabled={editProfile}
-                  onChange={(e) => setPrimaryAddress(e.target.value)}
+                  style={{
+                    border: "none",
+                    textDecoration: "none",
+                    background: "none",
+                  }}
+                  //onChange={(e) => setPrimaryAddress(e.target.value)}
                 />{" "}
               </FormContent>{" "}
               <FormContent>
-                <ForeFrontText> Primary Address Line2 </ForeFrontText>{" "}
-                <TextArea
-                  style={{ background: "white" }}
-                  defaultValue={user.primary_address_line2}
-                  disabled={editProfile}
-                  onChange={(e) => setPrimaryAddressLine2(e.target.value)}
-                />{" "}
-              </FormContent>{" "}
-              <FormContent>
-                <ForeFrontText> Secondary Address Line1 </ForeFrontText>{" "}
+                <ForeFrontText> Secondary Address </ForeFrontText>{" "}
                 <TextArea
                   style={{ background: "white" }}
                   defaultValue={user.secondary_address_line1}
                   disabled={editProfile}
-                  onChange={(e) => setSecondaryAddress(e.target.value)}
+                  style={{
+                    border: "none",
+                    textDecoration: "none",
+                    background: "none",
+                  }}
+                  //onChange={(e) => setSecondaryAddress(e.target.value)}
                 />{" "}
               </FormContent>{" "}
               <FormContent>
-                <ForeFrontText> Secondary Address Line2 </ForeFrontText>{" "}
-                <TextArea
-                  style={{ background: "white" }}
-                  defaultValue={user.secondary_address_line2}
-                  disabled={editProfile}
-                  onChange={(e) => setSecondaryAddressLine2(e.target.value)}
-                />{" "}
-              </FormContent>{" "}
-              <FormContent>
-                <ForeFrontText> Phone Number </ForeFrontText>{" "}
+                <ForeFrontText> Phone </ForeFrontText>{" "}
                 {/* <input type="text" id="mobileNo" className="inputField" value="+917874658301" style={{}}></input> */}{" "}
                 <Input
                   style={{ background: "white" }}
                   value={phone}
                   disabled={editProfile}
-                  onChange={(e) => validateOnlyNumeric(e.target.value)}
+                  style={{
+                    border: "none",
+                    textDecoration: "none",
+                    background: "none",
+                  }}
+                  //onChange={(e) => validateOnlyNumeric(e.target.value)}
                 ></Input>{" "}
               </FormContent>{" "}
-              <Link to="/">
-                <Button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleUpdate();
-                  }}
-                >
-                  RECALCULATE BMI{" "}
-                </Button>{" "}
-              </Link>{" "}
+              <BMIButton onClick={() => setToggleBMI(true)}>
+                RECALCULATE BMI{" "}
+              </BMIButton>{" "}
               <Link to="/">
                 <Button
                   onClick={(e) => {
@@ -385,12 +372,12 @@ export default function UserDashboardMain() {
               <Button
                 onClick={(e) => {
                   e.preventDefault();
-                  saveUpdate();
+                  setToggleChangePassword(true);
                 }}
               >
                 CHANGE PASSWORD{" "}
               </Button>{" "}
-            </RightContainer>{" "}
+            </LeftContainer>{" "}
           </MainContainer>{" "}
         </GrandContainer2>{" "}
       </GrandContainer>{" "}

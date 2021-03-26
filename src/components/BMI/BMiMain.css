@@ -5,6 +5,9 @@ div.bmi_main_container{
     z-index: 5;
     
 }
+.orient{
+    max-width: 500px;
+}
 div.card_bmi{
     background-image: url('../../assets/choosemealplan.jpg');
     background-position: center;
