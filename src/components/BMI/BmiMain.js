@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { sizing } from '@material-ui/system';
 import "./BMiMain.css";
 import BmiQueandTextfield from "./BmiQueandTextfield";
 import { Link ,useHistory} from 'react-router-dom';
@@ -9,21 +10,42 @@ import SimpleSlider from './slider.js';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
-// import getMuiTheme from 'material-ui/styles/getMuiTheme';
-// import { MuiThemeProvider } from 'material-ui';
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
-    width: 300,
+    width: 300 + theme.spacing(3) * 2
   },
-});
+  margin: {
+    height: theme.spacing(3)
+  }
+}));
 
-
-// const muiTheme = getMuiTheme({
-//   slider: {
-//     trackColor: "yellow",
-//     selectionColor: "red"
-//   }
-// });
+const PrettoSlider = withStyles({
+  root: {
+    color: "#52af77",
+    height: 8
+  },
+  thumb: {
+    height: 24,
+    width: 24,
+    backgroundColor: "#fff",
+    border: "4px solid currentColor",
+    marginTop: -8,
+    marginLeft: -12,
+    "&:focus,&:hover,&$active": {
+      boxShadow: "inherit"
+    }
+  },
+  active: {},
+  track: {
+    height: 8,
+    borderRadius: 0
+  },
+  rail: {
+    height: 8,
+    borderRadius: 0,
+    opacity: 1
+  }
+})(Slider);
 
 
 function valuetext(value) {
@@ -31,6 +53,7 @@ function valuetext(value) {
 }
 
 export default function BmiMain(props) {
+     const classes = useStyles();
     const [val, setVal] = useState([30,40])
     const [height, setHeight] = useState(0);
     const [weight, setWeight] = useState(0);
@@ -124,7 +147,7 @@ export default function BmiMain(props) {
                         calorieInTake
                     );
                 }
-            });
+    });
     };
 
     return ( <
@@ -219,33 +242,33 @@ export default function BmiMain(props) {
         div > <
         /div> < /
         div >
-           <div style={{display: "flex", flexDirection:"column", alignItems:"center", marginLeft:"20px"}} >
-<Typography id="discrete-slider-small-steps" gutterBottom>
-  Height
-</Typography>
+           <div style={{display: "flex", flexDirection:"column", alignItems:"center", marginLeft:"70px"}} >
 
+        <
+        h6 className = "ques_title_bmi" style={{marginBottom:"40px"}} > What is your Height ? (cm)< /h6>
 
-  <Slider
-  style={{width:180, margin: 4 , color:"#8bc441"}} 
-  defaultValue={30}
-        getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider"
-        valueLabelDisplay="auto"
-        step={10}
-        marks
-        min={10}
-        max={110}
-      
-      /></div>
+  <PrettoSlider
+       style={{borderRadius:"20px"}}
+        orientation="horizontal"
+        aria-label="pretto slider"
+        defaultValue={20}
+      />
+
+      </div>
              </div>
         
- <div style={{ display: "flex", alignItems: "center",width:"260px",marginTop:"20px"}}>
+ <div style={{ display: "flex", alignItems: "center",minWidth:"260px",marginTop:"20px", marginLeft:"240px"}}>
 <div style={{display: "flex", flexDirection:"column", alignItems:"center",marginRight:"10px"}} >
-<Typography id="discrete-slider-small-steps" gutterBottom>
-  Age
-</Typography>
 
+        <h6 className = "ques_title_bmi" style={{marginBottom:"40px"}} > What is your Age ? </h6>
+         <PrettoSlider
+       style={{borderRadius:"20px"}}
+        orientation="horizontal"
+        aria-label="pretto slider"
+        defaultValue={20}
+      />
 
+{/* 
   <Slider
   style={{width:180, margin: 4, color:"#8bc441"}} 
 
@@ -258,18 +281,26 @@ export default function BmiMain(props) {
         min={10}
         max={110}
       
-      />
+      /> */}
      </div>
 
  
-      <div style={{display: "flex", flexDirection:"column", alignItems:"center", marginLeft:"20px"}} >
-<Typography id="discrete-slider-small-steps" gutterBottom>
-  Weight
-</Typography>
+      <div style={{display: "flex", flexDirection:"column", alignItems:"center", marginLeft:"72px", minWidth:"220px"}} >
 
+        <h6 className = "ques_title_bmi" style={{marginBottom:"40px"}} > What is your weight? (Kg) </h6>
 
-  <Slider
-  style={{width:180, margin: 4, color:"#8bc441"}} 
+   {/* <div className={classes.root} style={{ height: "100vh",  }}> */}
+      <PrettoSlider
+       style={{borderRadius:"20px"}}
+        orientation="horizontal"
+        aria-label="pretto slider"
+        defaultValue={20}
+      />
+    {/* </div> */}
+  {/* <Slider
+  minHeight="75%"
+
+  style={{width:180, margin: 4, color:"#8bc441", }} 
   defaultValue={30}
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider"
@@ -279,7 +310,10 @@ export default function BmiMain(props) {
         min={10}
         max={110}
       
-      /></div>
+      /> */}
+    
+      
+      </div>
       </div>
       </div>
 
