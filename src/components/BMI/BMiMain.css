@@ -9,12 +9,17 @@ div.bmi_main_container{
     max-width: 500px;
 }
 div.card_bmi{
-    background-image: url('../../assets/choosemealplan.jpg');
+    /* background-image: url('../../assets/choosemealplan.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
-    width: 100%;
+    width: 100%; */
+    height: 200px;
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+    margin: 0px;
     
 }
 h6.title_bmi{
@@ -41,6 +46,12 @@ div.card_bmi {
     border-radius: 7px;
 }
 div.row_bmi{
+     background-image: url('../../assets/choosemealplan.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
     box-shadow: 15px 19px 15px -6px rgb(0 0 0 / 75%);
     border-radius: 7px; 
 }
@@ -63,7 +74,7 @@ h6.ques_title_bmi{
         background-position: initial;
         background-repeat: no-repeat;
         background-size: cover;
-        height: 100%;
+        height: 100vh;
         width: 100%;
         
     }
@@ -80,6 +91,7 @@ h6.ques_title_bmi{
         align-self: center;
     }
     div.row_bmi{
+        
         margin:4%;
     }
     div.bmi_main_container{
@@ -252,6 +264,7 @@ button.btn_next_bmi{
   background: #8BC441;
   margin-top: 18px;
   font-size: 10px;
+  padding: 10px;
   letter-spacing: 3px;
 }
 div.btn_next_container{
@@ -290,7 +303,7 @@ div.btn_next_container{
     div.bmi_main_container{
         display: grid;
         place-items: center;
-        position: absolute;
+        /* position: absolute; */
         top: 16%;
         left: 6%;
     }
@@ -323,7 +336,7 @@ h6.ques_title_bmi{
   margin-top: 23px;
 }
 div.icon_container_bmi{
-    padding: 3%;
+ 
     width: 47px;
     height: 46px;
     text-align: center;
@@ -370,7 +383,7 @@ div.btn_next_container{
 @media screen and (min-width: 1200px) {
     div.col_container{
         position: relative;
-        left: 7%;
+        left: -8px;
     }
     div.icon_container_remove{
         display: flex;
@@ -400,7 +413,7 @@ div.btn_next_container{
 }
 div.card_bmi{
    width: 1300px;
-   padding: 6%;
+   /* padding: 6%; */
    height: 463px;
 }
 h6.title_bmi{
@@ -471,6 +484,8 @@ div.row_bmi_bmi{
  width: 59%;
  position: relative;
  left: 18%;
+ display: flex;
+ align-items: center;
 }
 div.que_text_container_div{
 

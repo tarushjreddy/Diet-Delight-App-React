@@ -186,7 +186,7 @@ export default function UserDashboardMain() {
         <Bmireport bmiReport={bmiReport} toggleReport={toggleReport} />
       )}{" "}
       {/* <img src={logo_web} className="logo_web"></img> */}{" "}
-      <Mealchoose name="User Dashboard" />
+      <Mealchoose name="User Dashboard" className={{display:"flex", alignItems:"center"}}/>
       <GrandContainer>
         <GrandContainer2>
           <UpperContainer>

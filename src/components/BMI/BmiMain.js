@@ -130,9 +130,9 @@ export default function BmiMain(props) {
     return ( <
         div className = "bmi_main_container" >
         <
-        div className = "row row_bmi" >
+        div className = "row_bmi" >
         <
-        div className = "card card_bmi" >
+        div className = " card_bmi" style={{height:"380px"}} >
         <
         div className = "icon_container_remove" >
         <
@@ -146,11 +146,11 @@ export default function BmiMain(props) {
 
         <
         h6 className = "title_bmi" > Let "s calculate your BMI</h6>
-    <div style={{display:"flex", flexDirection:"row", alignItems: 'center', width:"1000px", margin:"0px", padding:"0px", justifyContent: 'center', }}>
+    <div style={{display:"flex", flexDirection:"column", alignItems: 'center', width:"1000px", margin:"0px", padding:"0px", justifyContent: 'center', }}>
         <
         div className = "row row_bmi_bmi" >
         <
-        div className = "col-md-6 col-sm-12 col_container" >
+        div className = " col_container" >
        
     
         <
@@ -219,10 +219,28 @@ export default function BmiMain(props) {
         div > <
         /div> < /
         div >
+           <div style={{display: "flex", flexDirection:"column", alignItems:"center", marginLeft:"20px"}} >
+<Typography id="discrete-slider-small-steps" gutterBottom>
+  Height
+</Typography>
+
+
+  <Slider
+  style={{width:180, margin: 4 , color:"#8bc441"}} 
+  defaultValue={30}
+        getAriaValueText={valuetext}
+        aria-labelledby="discrete-slider"
+        valueLabelDisplay="auto"
+        step={10}
+        marks
+        min={10}
+        max={110}
+      
+      /></div>
              </div>
         
- 
-<div style={{display: "flex", flexDirection:"column", alignItems:"center"}} >
+ <div style={{ display: "flex", alignItems: "center",width:"260px",marginTop:"20px"}}>
+<div style={{display: "flex", flexDirection:"column", alignItems:"center",marginRight:"10px"}} >
 <Typography id="discrete-slider-small-steps" gutterBottom>
   Age
 </Typography>
@@ -243,24 +261,7 @@ export default function BmiMain(props) {
       />
      </div>
 
-    <div style={{display: "flex", flexDirection:"column", alignItems:"center", marginLeft:"20px"}} >
-<Typography id="discrete-slider-small-steps" gutterBottom>
-  Height
-</Typography>
-
-
-  <Slider
-  style={{width:180, margin: 4 , color:"#8bc441"}} 
-  defaultValue={30}
-        getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider"
-        valueLabelDisplay="auto"
-        step={10}
-        marks
-        min={10}
-        max={110}
-      
-      /></div>
+ 
       <div style={{display: "flex", flexDirection:"column", alignItems:"center", marginLeft:"20px"}} >
 <Typography id="discrete-slider-small-steps" gutterBottom>
   Weight
@@ -279,6 +280,7 @@ export default function BmiMain(props) {
         max={110}
       
       /></div>
+      </div>
       </div>
 
         <
