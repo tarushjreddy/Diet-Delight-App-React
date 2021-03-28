@@ -188,8 +188,8 @@ export default function UserDashboardMain() {
       {/* <img src={logo_web} className="logo_web"></img> */}{" "}
       <Mealchoose name="User Dashboard" className={{display:"flex", alignItems:"center"}}/>
       <GrandContainer>
-        <GrandContainer2>
-          <UpperContainer>
+        <GrandContainer2 style={{minWidth:"900px"}}>
+          <UpperContainer style={{backgroundColor:"transparent", display:"flex", alignItems:"center", justifyContent:"space-evenly"}}>
             <UpperLeftContainer>
               <h6>
                 <b

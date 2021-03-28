@@ -20,25 +20,39 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const PrettoSlider = withStyles({
+disabled: {
+    color: "black",
+  },
   root: {
-    color: "#52af77",
+    color: "#EFEFEF",
     height: 8
   },
   thumb: {
     height: 24,
     width: 24,
-    backgroundColor: "#fff",
-    border: "4px solid currentColor",
+    color: "#52af77",
+    
+ backgroundColor: "#52af77",
+    border: "4px solid #52af77 r",
     marginTop: -8,
     marginLeft: -12,
     "&:focus,&:hover,&$active": {
-      boxShadow: "inherit"
+      boxShadow: "inherit",
+          backgroundColor: "#52af77",
+
     }
   },
-  active: {},
+  valueLabelDisplay:{
+ backgroundColor: "red",
+  },
+  active: {
+       backgroundColor: "red",
+       
+  },
   track: {
     height: 8,
-    borderRadius: 0
+    borderRadius: 9,
+    color: "#52af77"
   },
   rail: {
     height: 8,
@@ -53,6 +67,36 @@ function valuetext(value) {
 }
 
 export default function BmiMain(props) {
+      var timeout;
+
+  const [agevalue, setageValue] = React.useState([0, 100]);
+  const [heightvalue, setheightValue] = React.useState([0, 100]);
+    const [value, setValue] = React.useState([0, 100]);
+  const handleChange = (event, newValue) => {
+    timeout && clearTimeout(timeout);
+    timeout = setTimeout(() => {
+   
+      setValue(newValue);
+         console.log(value);  
+    }, 10);
+  };
+
+    const handleageChange = (event, newValue) => {
+    timeout && clearTimeout(timeout);
+    timeout = setTimeout(() => {
+   
+      setageValue(newValue);
+         console.log(agevalue);  
+    }, 10);
+  };
+    const handleheightChange = (event, newValue) => {
+    timeout && clearTimeout(timeout);
+    timeout = setTimeout(() => {
+   
+      setheightValue(newValue);
+         console.log(heightvalue);  
+    }, 10);
+  };
      const classes = useStyles();
     const [val, setVal] = useState([30,40])
     const [height, setHeight] = useState(0);
@@ -245,10 +289,14 @@ export default function BmiMain(props) {
            <div style={{display: "flex", flexDirection:"column", alignItems:"center", marginLeft:"70px"}} >
 
         <
-        h6 className = "ques_title_bmi" style={{marginBottom:"40px"}} > What is your Height ? (cm)< /h6>
+        h6 className = "ques_title_bmi" style={{marginBottom:"40px"}} > What is your Height ? ({heightvalue})< /h6>
 
   <PrettoSlider
-       style={{borderRadius:"20px"}}
+ 
+        onChange={handleheightChange}
+ valueLabelDisplay="active"
+        aria-labelledby="range-slider"
+        getAriaValueText={valuetext}
         orientation="horizontal"
         aria-label="pretto slider"
         defaultValue={20}
@@ -260,9 +308,13 @@ export default function BmiMain(props) {
  <div style={{ display: "flex", alignItems: "center",minWidth:"260px",marginTop:"20px", marginLeft:"240px"}}>
 <div style={{display: "flex", flexDirection:"column", alignItems:"center",marginRight:"10px"}} >
 
-        <h6 className = "ques_title_bmi" style={{marginBottom:"40px"}} > What is your Age ? </h6>
-         <PrettoSlider
-       style={{borderRadius:"20px"}}
+        <h6 className = "ques_title_bmi" style={{marginBottom:"40px"}} > What is your Age ? ({agevalue}) </h6>
+        <PrettoSlider
+ 
+        onChange={handleageChange}
+    valueLabelDisplay="active"
+        aria-labelledby="range-slider"
+        getAriaValueText={valuetext}
         orientation="horizontal"
         aria-label="pretto slider"
         defaultValue={20}
@@ -287,11 +339,15 @@ export default function BmiMain(props) {
  
       <div style={{display: "flex", flexDirection:"column", alignItems:"center", marginLeft:"72px", minWidth:"220px"}} >
 
-        <h6 className = "ques_title_bmi" style={{marginBottom:"40px"}} > What is your weight? (Kg) </h6>
+        <h6 className = "ques_title_bmi" style={{marginBottom:"40px"}} > What is your weight? ({value}) </h6>
 
    {/* <div className={classes.root} style={{ height: "100vh",  }}> */}
       <PrettoSlider
-       style={{borderRadius:"20px"}}
+ 
+        onChange={handleChange}
+ valueLabelDisplay="active"
+        aria-labelledby="range-slider"
+        getAriaValueText={valuetext}
         orientation="horizontal"
         aria-label="pretto slider"
         defaultValue={20}
