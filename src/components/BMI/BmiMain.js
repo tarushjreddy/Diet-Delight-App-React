@@ -19,7 +19,23 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const PrettoSlider = withStyles({
+
+
+
+
+function valuetext(value) {
+  return `${value}°C`;
+}
+
+export default function BmiMain(props) {
+      var timeout;
+
+  const [agevalue, setageValue] = React.useState([0, 100]);
+  const [heightvalue, setheightValue] = React.useState([0, 100]);
+    const [value, setValue] = React.useState([0, 100]);
+const [PrettoSlider_toggle, setsliderValue] = React.useState("");
+
+const PrettoSlider_pro = withStyles({
 disabled: {
     color: "black",
   },
@@ -61,17 +77,58 @@ disabled: {
   }
 })(Slider);
 
+const PrettoSlider = withStyles({
+disabled: {
+    color: "black",
+  },
+  root: {
+    color: "#EFEFEF",
+    height: 8
+  },
+  thumb: {
+    height: 24,
+    width: 24,
+    color: "#78288B",
+    
+ backgroundColor: "#78288B",
+    border: "4px solid #78288B r",
+    marginTop: -8,
+    marginLeft: -12,
+    "&:focus,&:hover,&$active": {
+      boxShadow: "inherit",
+          backgroundColor: "#78288B",
 
-function valuetext(value) {
-  return `${value}°C`;
-}
+    }
+  },
+  valueLabelDisplay:{
+ backgroundColor: "red",
+  },
+  active: {
+       backgroundColor: "red",
+       
+  },
+  track: {
+    height: 8,
+    borderRadius: 9,
+    color: "#78288B"
+  },
+  rail: {
+    height: 8,
+    borderRadius: 0,
+    opacity: 1
+  }
+})(Slider);
 
-export default function BmiMain(props) {
-      var timeout;
 
-  const [agevalue, setageValue] = React.useState([0, 100]);
-  const [heightvalue, setheightValue] = React.useState([0, 100]);
-    const [value, setValue] = React.useState([0, 100]);
+
+
+
+
+
+
+
+
+
   const handleChange = (event, newValue) => {
     timeout && clearTimeout(timeout);
     timeout = setTimeout(() => {
@@ -226,15 +283,38 @@ export default function BmiMain(props) {
         <
         div className = "row icon_container_main_bmi" >
         <
-        div className = "icon_container_bmi"
+        div className = "icon_container_bmi_male"
         id = "maleContainer"
         onClick = {
             () => {
                 var selectMaleContainer = document.getElementById(
                     "maleContainer"
                 );
+                var toggele_slider = document.getElementById(
+                    "pro_max"
+                );
+                toggele_slider.style.display = "flex"
+
+                var toggele_slider_one = document.getElementById(
+                    "pro_max_one"
+                );
+                toggele_slider_one.style.display = "none"
                 var selectMale = document.getElementById("male");
                 selectMale.style.color = "#fff";
+                   var nextbutton_femal = document.getElementById(
+                    "nextButton_female"
+                );
+                nextbutton_femal.style.background = "#8BC441"
+                
+
+
+
+
+                    var selectMaleContainername = document.getElementById(
+                    "name_male"
+                );
+                selectMaleContainername.style.color = "#fff";
+
                 selectMaleContainer.style.background = "#8BC441";
                 var selectFemaleContainer = document.getElementById(
                     "femaleContainer"
@@ -252,20 +332,42 @@ export default function BmiMain(props) {
         aria-hidden = "true" >
         <
         /i> <
-        h6 className = "male_text_btn_bmi" > Male < /h6> < /
+        h6 className = "male_text_btn_bmi" id = "name_male" > Male < /h6> < /
         div >
 
         <
-        div className = "icon_container_bmi"
+        div className = "icon_container_bmi_female"
         id = "femaleContainer"
         onClick = {
             () => {
+                var toggele_slider = document.getElementById(
+                    "pro_max"
+                );
+                toggele_slider.style.display = "flex"
+
+                var toggele_slider_one = document.getElementById(
+                    "pro_max_one"
+                );
+                toggele_slider_one.style.display = "none"
+
                 var selectFemaleContainer = document.getElementById(
                     "femaleContainer"
                 );
+                var selectFemaleContainername = document.getElementById(
+                    "name_female"
+                );
+                  var nextbutton_femal = document.getElementById(
+                    "nextButton_female"
+                );
+             
+               
+
+                nextbutton_femal.style.background = "#78288B"
+                
+                selectFemaleContainername.style.color = "#fff";
                 var selectFemale = document.getElementById("female");
                 selectFemale.style.color = "#fff";
-                selectFemaleContainer.style.background = "#8BC441";
+                selectFemaleContainer.style.background = "#78288B";
                 var selectMaleContainer = document.getElementById(
                     "maleContainer"
                 );
@@ -282,16 +384,29 @@ export default function BmiMain(props) {
         id = "female" >
         <
         /i> <
-        h6 className = "male_text_btn_bmi" > Female < /h6> < /
+        h6 className = "male_text_btn_bmi" id="name_female" > Female < /h6> < /
         div > <
         /div> < /
         div >
            <div style={{display: "flex", flexDirection:"column", alignItems:"center", marginLeft:"70px"}} >
 
         <
-        h6 className = "ques_title_bmi" style={{marginBottom:"40px"}} > What is your Height ? ({heightvalue})< /h6>
-
+        h6 className = "ques_title_bmi" style={{marginBottom:"10px"}} > What is your Height ? (Cm)< /h6>
+           <h6 style={{fontSize:"15px", backgroundColor:"gray", color:"white", borderRadius:"20px", padding:"10px",marginBottom:"10px"}}>{value}</h6>
   <PrettoSlider
+    style={{display:"none"}}
+   id="pro_max_one"
+        onChange={handleheightChange}
+ valueLabelDisplay="active"
+        aria-labelledby="range-slider"
+        getAriaValueText={valuetext}
+        orientation="horizontal"
+        aria-label="pretto slider"
+        defaultValue={20}
+      />
+  <PrettoSlider_pro
+    style={{display:"flex"}}
+        id="pro_max"
  
         onChange={handleheightChange}
  valueLabelDisplay="active"
@@ -308,9 +423,24 @@ export default function BmiMain(props) {
  <div style={{ display: "flex", alignItems: "center",minWidth:"260px",marginTop:"20px", marginLeft:"240px"}}>
 <div style={{display: "flex", flexDirection:"column", alignItems:"center",marginRight:"10px"}} >
 
-        <h6 className = "ques_title_bmi" style={{marginBottom:"40px"}} > What is your Age ? ({agevalue}) </h6>
+        <h6 className = "ques_title_bmi" style={{marginBottom:"10px"}} > What is your Age ? (Yr) </h6>
+           <h6 style={{fontSize:"15px", backgroundColor:"gray", color:"white", borderRadius:"20px", padding:"10px",marginBottom:"10px"}}>{value}</h6>
+
         <PrettoSlider
+        style={{display:"none"}}
+        id="pro_max"
  
+        onChange={handleageChange}
+    valueLabelDisplay="active"
+        aria-labelledby="range-slider"
+        getAriaValueText={valuetext}
+        orientation="horizontal"
+        aria-label="pretto slider"
+        defaultValue={20}
+      />
+        <PrettoSlider_pro
+          style={{display:"flex"}}
+   id="pro_max_one"
         onChange={handleageChange}
     valueLabelDisplay="active"
         aria-labelledby="range-slider"
@@ -339,13 +469,27 @@ export default function BmiMain(props) {
  
       <div style={{display: "flex", flexDirection:"column", alignItems:"center", marginLeft:"72px", minWidth:"220px"}} >
 
-        <h6 className = "ques_title_bmi" style={{marginBottom:"40px"}} > What is your weight? ({value}) </h6>
+        <h6 className = "ques_title_bmi" style={{marginBottom:"10px"}} > What is your weight? (KG) </h6>
 
    {/* <div className={classes.root} style={{ height: "100vh",  }}> */}
-      <PrettoSlider
+   <h6 style={{fontSize:"15px", backgroundColor:"gray", color:"white", borderRadius:"20px", padding:"10px",marginBottom:"10px"}}>{value}</h6>
+         <PrettoSlider_pro
+        style={{display:"flex"}}
+        id="pro_max"
  
-        onChange={handleChange}
- valueLabelDisplay="active"
+        onChange={handleheightChange}
+    valueLabelDisplay="active"
+        aria-labelledby="range-slider"
+        getAriaValueText={valuetext}
+        orientation="horizontal"
+        aria-label="pretto slider"
+        defaultValue={20}
+      />
+        <PrettoSlider
+          style={{display:"none"}}
+   id="pro_max_one"
+        onChange={handleageChange}
+    valueLabelDisplay="active"
         aria-labelledby="range-slider"
         getAriaValueText={valuetext}
         orientation="horizontal"
@@ -376,15 +520,12 @@ export default function BmiMain(props) {
         <
         /div> <
         div className = "btn_next_container" >
-        <
-        button className = "btn btn_next_bmi"
+        <button className = "btn btn_next_bmi"
+        id ="nextButton_female"
         onClick = {
             () => calculateBMI()
         } >
-        Next <
-        /button> < /
-        div > <
-        /div> < /
+        Next </button> </div> </div> < /
         div > 
     );
 }

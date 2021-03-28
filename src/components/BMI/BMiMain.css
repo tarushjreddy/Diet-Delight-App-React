@@ -36,9 +36,17 @@ input.bmi_que_textfiled{
 i.icon_bmi{
     color:#303960;
 }
-div.icon_container_bmi:hover{
+div.icon_container_bmi_male:hover{
+  
     color:#fff;
-    background: #8BC441;
+    background: #52af77;
+    cursor: pointer;
+  
+    
+}
+div.icon_container_bmi_female:hover{
+    color:#fff;
+    background: #78288B;
     cursor: pointer;
     
 }
@@ -439,7 +447,7 @@ h6.ques_title_bmi{
    margin-bottom: 11px;
    margin-top: 14px;
 }
-div.icon_container_bmi{
+div.icon_container_bmi_male,div.icon_container_bmi_female {
     padding: 2.5%;
     width: 58px;
     height: 62px;
@@ -452,6 +460,12 @@ div.icon_container_bmi{
 }
 i.icon_bmi{
 
+    margin-top: 0px;
+    font-size: 25px;
+
+}
+i.icon_bmi:hover{
+color: white;
     margin-top: 0px;
     font-size: 25px;
 
