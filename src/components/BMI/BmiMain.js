@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { sizing } from '@material-ui/system';
 import "./BMiMain.css";
+
 import BmiQueandTextfield from "./BmiQueandTextfield";
 import { Link ,useHistory} from 'react-router-dom';
 import axios from "../../axiosInstance";
@@ -112,11 +113,17 @@ export default function BmiMain(props) {
       var timeout;
 
   const [agevalue, setageValue] = React.useState([0, 100]);
-  const [heightvalue, setheightValue] = React.useState([0, 100]);
-    const [weightvalue, setValue] = React.useState([0, 100]);
+  const [heightvalue, setheightValue] = React.useState([0, 300]);
+    const [weightvalue, setValue] = React.useState([0, 200]);
 const [PrettoSlider_toggle, setsliderValue] = React.useState("");
 
 
+    const classes = useStyles();
+    const [val, setVal] = useState([30,40])
+    const [height, setHeight] = useState(0);
+    const [weight, setWeight] = useState(0);
+    const [age, setAge] = useState(0);
+    const [gender, setGender] = useState(0);
 
 
 
@@ -135,8 +142,11 @@ const [PrettoSlider_toggle, setsliderValue] = React.useState("");
     timeout = setTimeout(() => {
    
       setValue(newValue);
-         console.log(weightvalue);  
-    }, 10);
+      
+      setWeight(weightvalue)
+     
+         console.log(weight);  
+    }, 1);
   };
 
     const handleageChange = (event, newValue) => {
@@ -144,23 +154,20 @@ const [PrettoSlider_toggle, setsliderValue] = React.useState("");
     timeout = setTimeout(() => {
    
       setageValue(newValue);
-         console.log(agevalue);  
-    }, 10);
+        setAge(agevalue)
+         console.log(age);  
+    }, 1);
   };
     const handleheightChange = (event, newValue) => {
     timeout && clearTimeout(timeout);
     timeout = setTimeout(() => {
    
       setheightValue(newValue);
-         console.log(heightvalue);  
-    }, 10);
+        setHeight(heightvalue)
+         console.log(height);  
+    }, 1);
   };
-     const classes = useStyles();
-    const [val, setVal] = useState([30,40])
-    const [height, setHeight] = useState(0);
-    const [weight, setWeight] = useState(0);
-    const [age, setAge] = useState(0);
-    const [gender, setGender] = useState(0);
+ 
 
     const validateOnlyNumeric = (data, relatedTo) => {
         console.log(data, relatedTo);
@@ -270,7 +277,7 @@ const [PrettoSlider_toggle, setsliderValue] = React.useState("");
         div >
 
         <
-        h6 className = "title_bmi" > Let "s calculate your BMI</h6>
+        h6 className = "title_bmi" >BMI Calucualtor</h6>
     <div style={{display:"flex", flexDirection:"column", alignItems: 'center', width:"1000px", margin:"0px", padding:"0px", justifyContent: 'center', }}>
         <
         div className = "row row_bmi_bmi" >
@@ -459,13 +466,14 @@ var text_male_button = document.getElementById(
         div >
            <div style={{display: "flex", flexDirection:"column", alignItems:"center", marginLeft:"70px"}} >
 
-           <h6 style={{fontSize:"15px", color:"black", borderRadius:"20px", padding:"10px",marginBottom:"1px"}}>{heightvalue}</h6>
+           <h6 style={{fontSize:"15px",fontFamily:"Kalam", color:"black", borderRadius:"20px", padding:"10px",marginBottom:"1px"}}>{heightvalue}</h6>
  
  
    <PrettoSlider_pro
     style={{display:"flex"}}
         id="height_slider_male"
- 
+
+ max={200}
         onChange={handleheightChange}
  valueLabelDisplay="active"
         aria-labelledby="range-slider"
@@ -488,7 +496,7 @@ var text_male_button = document.getElementById(
         defaultValue={20}
       />
 
-        <h6 className = "ques_title_bmi" style={{marginBottom:"10px"}} > What is your Height ? (Cm)< /h6>
+        <h6 className = "ques_title_bmi" style={{marginBottom:"10px"}} > What is your Height ? (Cms)< /h6>
 
       </div>
              </div>
@@ -496,7 +504,7 @@ var text_male_button = document.getElementById(
  <div style={{ display: "flex", alignItems: "center",minWidth:"260px",marginTop:"20px", marginLeft:"240px"}}>
 <div style={{display: "flex", flexDirection:"column", alignItems:"center",marginRight:"10px"}} >
 
-           <h6 style={{fontSize:"15px", color:"black", borderRadius:"20px", padding:"10px",marginBottom:"1px"}}>{agevalue}</h6>
+           <h6 style={{fontSize:"15px",fontFamily:"Kalam", color:"black", borderRadius:"20px", padding:"10px",marginBottom:"1px"}}>{agevalue}</h6>
   <PrettoSlider_pro
     style={{display:"flex"}}
         id="age_slider_male"
@@ -521,7 +529,7 @@ var text_male_button = document.getElementById(
         defaultValue={20}
       />
 
-        <h6 className = "ques_title_bmi" style={{marginBottom:"10px"}} > What is your Age ? (Yr) </h6>
+        <h6 className = "ques_title_bmi" style={{marginBottom:"10px"}} > What is your Age ? (Years) </h6>
 
 {/* 
   <Slider
@@ -544,7 +552,7 @@ var text_male_button = document.getElementById(
 
 
    {/* <div className={classes.root} style={{ height: "100vh",  }}> */}
-   <h6 style={{fontSize:"15px", color:"black", borderRadius:"20px", padding:"10px",marginBottom:"1px"}}>{weightvalue}</h6>
+   <h6 style={{fontSize:"15px", color:"black",fontFamily:"Kalam", borderRadius:"20px", padding:"10px",marginBottom:"1px"}}>{weightvalue}</h6>
          <PrettoSlider_pro
         style={{display:"flex"}}
         id="weight_slider_male"
@@ -568,7 +576,7 @@ var text_male_button = document.getElementById(
         aria-label="pretto slider"
         defaultValue={20}
       />
-              <h6 className = "ques_title_bmi" style={{marginBottom:"10px"}} > What is your weight? (KG) </h6>
+              <h6 className = "ques_title_bmi" style={{marginBottom:"10px"}} > What is your weight? (Kg) </h6>
 
     {/* </div> */}
   {/* <Slider
@@ -594,10 +602,15 @@ var text_male_button = document.getElementById(
         <
         /div> <
         div className = "btn_next_container" >
+    
         <button className = "btn btn_next_bmi"
         id ="nextButton_female"
+        style={{fontWeight:"bold"}}
         onClick = {
-            () => calculateBMI()
+            () => {
+            console.log(age, height, weight)
+              calculateBMI()
+            }
         } >
         Next </button> </div> </div> < /
         div > 
