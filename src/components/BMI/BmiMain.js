@@ -19,22 +19,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-
-
-
-
-function valuetext(value) {
-  return `${value}°C`;
-}
-
-export default function BmiMain(props) {
-      var timeout;
-
-  const [agevalue, setageValue] = React.useState([0, 100]);
-  const [heightvalue, setheightValue] = React.useState([0, 100]);
-    const [value, setValue] = React.useState([0, 100]);
-const [PrettoSlider_toggle, setsliderValue] = React.useState("");
-
 const PrettoSlider_pro = withStyles({
 disabled: {
     color: "black",
@@ -120,6 +104,23 @@ disabled: {
 })(Slider);
 
 
+function valuetext(value) {
+  return `${value}°C`;
+}
+
+export default function BmiMain(props) {
+      var timeout;
+
+  const [agevalue, setageValue] = React.useState([0, 100]);
+  const [heightvalue, setheightValue] = React.useState([0, 100]);
+    const [weightvalue, setValue] = React.useState([0, 100]);
+const [PrettoSlider_toggle, setsliderValue] = React.useState("");
+
+
+
+
+
+
 
 
 
@@ -134,7 +135,7 @@ disabled: {
     timeout = setTimeout(() => {
    
       setValue(newValue);
-         console.log(value);  
+         console.log(weightvalue);  
     }, 10);
   };
 
@@ -287,18 +288,55 @@ disabled: {
         id = "maleContainer"
         onClick = {
             () => {
+
+
+
+      var text_male_button = document.getElementById(
+                    "name_female"
+                );
+                text_male_button.style.color = "black"
+
+      var toggele_slider_one = document.getElementById(
+                    "weight_slider_male"
+                );
+                toggele_slider_one.style.display = "flex"
+
+                var toggele_slider = document.getElementById(
+                    "weight_slider_female"
+                );
+                toggele_slider.style.display = "none"
+
+                var age_slider_m = document.getElementById(
+                    "age_slider_male"
+                );
+                age_slider_m.style.display = "flex"
+
+                var age_slider_f = document.getElementById(
+                    "age_slider_female"
+                );
+                age_slider_f.style.display = "none"
+
+ var height_slider_m = document.getElementById(
+                    "height_slider_male"
+                );
+                height_slider_m.style.display = "flex"
+
+                var height_slider_f = document.getElementById(
+                    "height_slider_female"
+                );
+                height_slider_f.style.display = "none"
+
+
+
+
+
+
+
+
                 var selectMaleContainer = document.getElementById(
                     "maleContainer"
                 );
-                var toggele_slider = document.getElementById(
-                    "pro_max"
-                );
-                toggele_slider.style.display = "flex"
-
-                var toggele_slider_one = document.getElementById(
-                    "pro_max_one"
-                );
-                toggele_slider_one.style.display = "none"
+               
                 var selectMale = document.getElementById("male");
                 selectMale.style.color = "#fff";
                    var nextbutton_femal = document.getElementById(
@@ -340,15 +378,46 @@ disabled: {
         id = "femaleContainer"
         onClick = {
             () => {
+
+var text_male_button = document.getElementById(
+                    "name_male"
+                );
+                text_male_button.style.color = "black"
+
+
+
+
+               var toggele_slider_one = document.getElementById(
+                    "weight_slider_male"
+                );
+                toggele_slider_one.style.display = "none"
+
                 var toggele_slider = document.getElementById(
-                    "pro_max"
+                    "weight_slider_female"
                 );
                 toggele_slider.style.display = "flex"
 
-                var toggele_slider_one = document.getElementById(
-                    "pro_max_one"
+                var age_slider_m = document.getElementById(
+                    "age_slider_male"
                 );
-                toggele_slider_one.style.display = "none"
+                age_slider_m.style.display = "none"
+
+                var age_slider_f = document.getElementById(
+                    "age_slider_female"
+                );
+                age_slider_f.style.display = "flex"
+
+ var height_slider_m = document.getElementById(
+                    "height_slider_male"
+                );
+                height_slider_m.style.display = "none"
+
+                var height_slider_f = document.getElementById(
+                    "height_slider_female"
+                );
+                height_slider_f.style.display = "flex"
+               
+                
 
                 var selectFemaleContainer = document.getElementById(
                     "femaleContainer"
@@ -390,23 +459,12 @@ disabled: {
         div >
            <div style={{display: "flex", flexDirection:"column", alignItems:"center", marginLeft:"70px"}} >
 
-        <
-        h6 className = "ques_title_bmi" style={{marginBottom:"10px"}} > What is your Height ? (Cm)< /h6>
-           <h6 style={{fontSize:"15px", backgroundColor:"gray", color:"white", borderRadius:"20px", padding:"10px",marginBottom:"10px"}}>{value}</h6>
-  <PrettoSlider
-    style={{display:"none"}}
-   id="pro_max_one"
-        onChange={handleheightChange}
- valueLabelDisplay="active"
-        aria-labelledby="range-slider"
-        getAriaValueText={valuetext}
-        orientation="horizontal"
-        aria-label="pretto slider"
-        defaultValue={20}
-      />
-  <PrettoSlider_pro
+           <h6 style={{fontSize:"15px", color:"black", borderRadius:"20px", padding:"10px",marginBottom:"1px"}}>{heightvalue}</h6>
+ 
+ 
+   <PrettoSlider_pro
     style={{display:"flex"}}
-        id="pro_max"
+        id="height_slider_male"
  
         onChange={handleheightChange}
  valueLabelDisplay="active"
@@ -416,6 +474,21 @@ disabled: {
         aria-label="pretto slider"
         defaultValue={20}
       />
+ 
+ 
+  <PrettoSlider
+    style={{display:"none"}}
+   id="height_slider_female"
+        onChange={handleheightChange}
+ valueLabelDisplay="active"
+        aria-labelledby="range-slider"
+        getAriaValueText={valuetext}
+        orientation="horizontal"
+        aria-label="pretto slider"
+        defaultValue={20}
+      />
+
+        <h6 className = "ques_title_bmi" style={{marginBottom:"10px"}} > What is your Height ? (Cm)< /h6>
 
       </div>
              </div>
@@ -423,32 +496,32 @@ disabled: {
  <div style={{ display: "flex", alignItems: "center",minWidth:"260px",marginTop:"20px", marginLeft:"240px"}}>
 <div style={{display: "flex", flexDirection:"column", alignItems:"center",marginRight:"10px"}} >
 
-        <h6 className = "ques_title_bmi" style={{marginBottom:"10px"}} > What is your Age ? (Yr) </h6>
-           <h6 style={{fontSize:"15px", backgroundColor:"gray", color:"white", borderRadius:"20px", padding:"10px",marginBottom:"10px"}}>{value}</h6>
-
-        <PrettoSlider
-        style={{display:"none"}}
-        id="pro_max"
+           <h6 style={{fontSize:"15px", color:"black", borderRadius:"20px", padding:"10px",marginBottom:"1px"}}>{agevalue}</h6>
+  <PrettoSlider_pro
+    style={{display:"flex"}}
+        id="age_slider_male"
  
         onChange={handleageChange}
-    valueLabelDisplay="active"
+ valueLabelDisplay="active"
         aria-labelledby="range-slider"
         getAriaValueText={valuetext}
         orientation="horizontal"
         aria-label="pretto slider"
         defaultValue={20}
       />
-        <PrettoSlider_pro
-          style={{display:"flex"}}
-   id="pro_max_one"
+        <PrettoSlider
+    style={{display:"none"}}
+ id="age_slider_female"
         onChange={handleageChange}
-    valueLabelDisplay="active"
+ valueLabelDisplay="active"
         aria-labelledby="range-slider"
         getAriaValueText={valuetext}
         orientation="horizontal"
         aria-label="pretto slider"
         defaultValue={20}
       />
+
+        <h6 className = "ques_title_bmi" style={{marginBottom:"10px"}} > What is your Age ? (Yr) </h6>
 
 {/* 
   <Slider
@@ -467,17 +540,16 @@ disabled: {
      </div>
 
  
-      <div style={{display: "flex", flexDirection:"column", alignItems:"center", marginLeft:"72px", minWidth:"220px"}} >
+      <div style={{display: "flex", flexDirection:"column", alignItems:"center", marginLeft:"40px", minWidth:"220px"}} >
 
-        <h6 className = "ques_title_bmi" style={{marginBottom:"10px"}} > What is your weight? (KG) </h6>
 
    {/* <div className={classes.root} style={{ height: "100vh",  }}> */}
-   <h6 style={{fontSize:"15px", backgroundColor:"gray", color:"white", borderRadius:"20px", padding:"10px",marginBottom:"10px"}}>{value}</h6>
+   <h6 style={{fontSize:"15px", color:"black", borderRadius:"20px", padding:"10px",marginBottom:"1px"}}>{weightvalue}</h6>
          <PrettoSlider_pro
         style={{display:"flex"}}
-        id="pro_max"
+        id="weight_slider_male"
  
-        onChange={handleheightChange}
+        onChange={handleChange}
     valueLabelDisplay="active"
         aria-labelledby="range-slider"
         getAriaValueText={valuetext}
@@ -487,8 +559,8 @@ disabled: {
       />
         <PrettoSlider
           style={{display:"none"}}
-   id="pro_max_one"
-        onChange={handleageChange}
+   id="weight_slider_female"
+        onChange={handleChange}
     valueLabelDisplay="active"
         aria-labelledby="range-slider"
         getAriaValueText={valuetext}
@@ -496,6 +568,8 @@ disabled: {
         aria-label="pretto slider"
         defaultValue={20}
       />
+              <h6 className = "ques_title_bmi" style={{marginBottom:"10px"}} > What is your weight? (KG) </h6>
+
     {/* </div> */}
   {/* <Slider
   minHeight="75%"
