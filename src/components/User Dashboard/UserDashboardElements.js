@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import backgroundImage from "./sample.jpeg";
-
-export const LeadContainer = styled.div`
+export const LeadContainer = styled.div `
   position: relative;
   height: 100%;
   width: 100%;
@@ -13,7 +12,7 @@ export const LeadContainer = styled.div`
   background-attachment: fixed;
 `;
 
-export const GrandContainer = styled.div`
+export const GrandContainer = styled.div `
   display: flex;
   height: auto;
   align-items: center;
@@ -36,7 +35,7 @@ export const GrandContainer = styled.div`
   }
 `;
 
-export const GrandContainer2 = styled.div`
+export const GrandContainer2 = styled.div `
   display: flex;
   height: auto;
   width: 80%;
@@ -60,7 +59,7 @@ export const GrandContainer2 = styled.div`
   }
 `;
 
-export const MainContainer = styled.div`
+export const MainContainer = styled.div `
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -81,7 +80,7 @@ export const MainContainer = styled.div`
   }
 `;
 
-export const UpperContainer = styled.div`
+export const UpperContainer = styled.div `
   display: flex;
   justify-content: space-around;
   align-items: left;
@@ -98,18 +97,18 @@ export const UpperContainer = styled.div`
   }
 `;
 
-export const UpperLeftContainer = styled.div`
+export const UpperLeftContainer = styled.div `
   display: flex;
   flex-direction: column;
 `;
 
-export const UpperMiddleContainer = styled.div`
+export const UpperMiddleContainer = styled.div `
   display: flex;
   flex-direction: column;
   width: 25%;
 `;
 
-export const RoundCircle = styled.div`
+export const RoundCircle = styled.div `
   background-color: #6f42c1;
   border-radius: 50%;
   border: 10px solid #ac83f7;
@@ -121,20 +120,20 @@ export const RoundCircle = styled.div`
   background-clip: padding-box;
 `;
 
-export const InsideCircleText = styled.span`
+export const InsideCircleText = styled.span `
   height: auto;
   font-size: 60px;
   color: #fff;
   font-weight: 700;
 `;
 
-export const UpperRightContainerText = styled.span`
+export const UpperRightContainerText = styled.span `
   color: #000;
   font-size: 25px;
   font-weight: 700;
 `;
 
-export const LeftContainer = styled.div`
+export const LeftContainer = styled.div `
   height: auto;
   width: auto;
   font-weight: 500;
@@ -162,10 +161,13 @@ export const LeftContainer = styled.div`
 //   }
 // `;
 
-export const ForeFrontText = styled.div`
-  margin-left: 5%;
-  width: 30%;
-  font-weight: 700;
+export const ForeFrontText = styled.div `
+
+padding:0px;
+  color:#303960;
+
+  font-size:"48px";
+  font-weight: bold;
   @media only screen and (max-width: 945px) {
     width: 30%;
     height: auto;
@@ -176,20 +178,23 @@ export const ForeFrontText = styled.div`
   }
 `;
 
-export const FormContent = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-top: 3%;
-  font-weight: 700;
-  @media only screen and (max-width: 750px) {
-    flex-direction: row;
-    width: 100%;
-    float: left;
-  }
+export const FormContent = styled.div `
+background-color: transparent;
+color:#303960;
+width:50%;
+   fontFamily: "Roboto",
+                fontWeight: "700",
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+text-align: center;
 `;
 
-export const Button = styled.button`
+export const Button = styled.button `
   background-color: #8bc441;
+  min-width:210px
+  max-width:auto;
   padding: 5px;
   padding-left: 20px;
   padding-right: 20px;
@@ -206,7 +211,7 @@ export const Button = styled.button`
   }
 `;
 
-export const BMIButton = styled.button`
+export const BMIButton = styled.button `
   background-color: #8bc441;
   margin-top: 30px;
   color: white;
@@ -226,9 +231,10 @@ export const BMIButton = styled.button`
 `;
 
 export const Input = styled.input.attrs((props) => ({
-  type: "text",
-  defaultValue: props.defaultValue,
-}))`
+    type: "text",
+    defaultValue: props.defaultValue,
+}))
+`
   width: 50%;
   margin-left: 5%;
   padding-left: 5px;
@@ -247,9 +253,10 @@ export const Input = styled.input.attrs((props) => ({
 `;
 
 export const EmailInput = styled.input.attrs((props) => ({
-  type: "email",
-  defaultValue: props.defaultValue,
-}))`
+    type: "email",
+    defaultValue: props.defaultValue,
+}))
+`
   width: 50%;
   margin-left: 5%;
   padding-left: 5px;
@@ -269,8 +276,9 @@ export const EmailInput = styled.input.attrs((props) => ({
 `;
 
 export const Anchor = styled.a.attrs({
-  href: "",
-})`
+    href: "",
+})
+`
   color: #8bc441;
   margin-left: 5%;
   text-decoration: none;
@@ -280,8 +288,9 @@ export const Anchor = styled.a.attrs({
 `;
 
 export const TextArea = styled.textarea.attrs((props) => ({
-  defaultValue: props.defaultValue,
-}))`
+    defaultValue: props.defaultValue,
+}))
+`
   margin-left: 5%;
   height: 20%;
   width: 50%;

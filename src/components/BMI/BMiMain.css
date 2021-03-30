@@ -1,4 +1,8 @@
-
+.example{
+    align-items: center;
+    justify-content: center;
+    background-color: #303960
+}
 @import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
 div.bmi_main_container{
     display: grid;
@@ -41,7 +45,7 @@ i.icon_bmi{
 div.icon_container_bmi_male:hover{
   
     color:#fff;
-    background: #52af77;
+    background: #8BC441;
     cursor: pointer;
   
     
@@ -285,7 +289,11 @@ div.btn_next_container{
 
 }
 
-
+button.btn_next_bmi:hover{
+ background: transparent;
+ border: 2px solid #8BC441;
+ color: #8BC441;
+}
 @media screen and (min-width: 992px) {
     div.col_container{
         position: relative;

@@ -31,15 +31,15 @@ disabled: {
   thumb: {
     height: 24,
     width: 24,
-    color: "#52af77",
+    color: "#8BC441",
     
- backgroundColor: "#52af77",
-    border: "4px solid #52af77 r",
+ backgroundColor: "#8BC441",
+    border: "4px solid #8BC441 r",
     marginTop: -8,
     marginLeft: -12,
     "&:focus,&:hover,&$active": {
       boxShadow: "inherit",
-          backgroundColor: "#52af77",
+          backgroundColor: "#8BC441",
 
     }
   },
@@ -53,7 +53,7 @@ disabled: {
   track: {
     height: 8,
     borderRadius: 9,
-    color: "#52af77"
+    color: "#8BC441"
   },
   rail: {
     height: 8,
@@ -297,6 +297,10 @@ const [PrettoSlider_toggle, setsliderValue] = React.useState("");
             () => {
 
 
+      var logo_male = document.getElementById(
+                    "male_icon"
+                );
+                logo_male.style.color = "black"
 
       var text_male_button = document.getElementById(
                     "name_female"
@@ -373,7 +377,8 @@ const [PrettoSlider_toggle, setsliderValue] = React.useState("");
         } >
         <
         i className = "fa fa-mars icon_bmi"
-        id = "male"
+        id = "male_icon"
+        style={{color:"black"}}
         aria-hidden = "true" >
         <
         /i> <
@@ -457,6 +462,7 @@ var text_male_button = document.getElementById(
         <
         i className = "fa fa-venus icon_bmi"
         aria-hidden = "true"
+         style={{color:"black"}}
         id = "female" >
         <
         /i> <
@@ -472,8 +478,9 @@ var text_male_button = document.getElementById(
    <PrettoSlider_pro
     style={{display:"flex"}}
         id="height_slider_male"
+ min={120}
+ max ={220}
 
- max={200}
         onChange={handleheightChange}
  valueLabelDisplay="active"
         aria-labelledby="range-slider"
@@ -487,6 +494,8 @@ var text_male_button = document.getElementById(
   <PrettoSlider
     style={{display:"none"}}
    id="height_slider_female"
+ min={120}
+ max ={220}
         onChange={handleheightChange}
  valueLabelDisplay="active"
         aria-labelledby="range-slider"
@@ -508,7 +517,8 @@ var text_male_button = document.getElementById(
   <PrettoSlider_pro
     style={{display:"flex"}}
         id="age_slider_male"
- 
+           min={16}
+ max={100}
         onChange={handleageChange}
  valueLabelDisplay="active"
         aria-labelledby="range-slider"
@@ -520,6 +530,8 @@ var text_male_button = document.getElementById(
         <PrettoSlider
     style={{display:"none"}}
  id="age_slider_female"
+           min={16}
+ max={100}
         onChange={handleageChange}
  valueLabelDisplay="active"
         aria-labelledby="range-slider"
@@ -556,7 +568,8 @@ var text_male_button = document.getElementById(
          <PrettoSlider_pro
         style={{display:"flex"}}
         id="weight_slider_male"
- 
+ min={40}
+ max={180}
         onChange={handleChange}
     valueLabelDisplay="active"
         aria-labelledby="range-slider"
@@ -567,6 +580,7 @@ var text_male_button = document.getElementById(
       />
         <PrettoSlider
           style={{display:"none"}}
+
    id="weight_slider_female"
         onChange={handleChange}
     valueLabelDisplay="active"
