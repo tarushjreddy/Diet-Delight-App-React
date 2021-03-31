@@ -102,7 +102,7 @@ function Change_pro(props) {
 
     // }
     return (
-        <div>
+        <div className="trail">
 
         <Form style={{backgroundColor: "transparent",}} >
               <div style={{marginBottom:"15px"}}>

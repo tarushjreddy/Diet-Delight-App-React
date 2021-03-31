@@ -22,3 +22,15 @@
   color: #8bc53f;
   border: 2px solid #8bc53f;
 }
+.special_modal .modal-content{
+  background-color: green;
+}
+@media screen and (min-width: 1200px) {
+
+.main_screen{
+    background-size: fill;
+    background-attachment: fixed;
+}
+
+
+}

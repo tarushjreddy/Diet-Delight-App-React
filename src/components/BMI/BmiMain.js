@@ -112,9 +112,9 @@ function valuetext(value) {
 export default function BmiMain(props) {
       var timeout;
 
-  const [agevalue, setageValue] = React.useState([0, 100]);
-  const [heightvalue, setheightValue] = React.useState([0, 300]);
-    const [weightvalue, setValue] = React.useState([0, 200]);
+  const [agevalue, setageValue] = React.useState([16,]);
+  const [heightvalue, setheightValue] = React.useState([120,]);
+    const [weightvalue, setValue] = React.useState([40,]);
 const [PrettoSlider_toggle, setsliderValue] = React.useState("");
 
 
@@ -258,7 +258,7 @@ const [PrettoSlider_toggle, setsliderValue] = React.useState("");
     };
 
     return ( <
-        div className = "bmi_main_container" >
+        div className = "bmi_main_container" style={{marginLeft:"90px"}} >
         <
         div className = "row_bmi" >
         <
@@ -275,7 +275,7 @@ const [PrettoSlider_toggle, setsliderValue] = React.useState("");
         div >
 
         <
-        h6 className = "title_bmi" >BMI Calucualtor</h6>
+        h6 className = "title_bmi" style={{marginLeft:"50px"}} >BMI Calculator</h6>
     <div style={{display:"flex", flexDirection:"column", alignItems: 'center', width:"1000px", margin:"0px", padding:"0px", justifyContent: 'center', }}>
         <
         div className = "row row_bmi_bmi" >
@@ -298,7 +298,7 @@ const [PrettoSlider_toggle, setsliderValue] = React.useState("");
       var logo_male = document.getElementById(
                     "male_icon"
                 );
-                logo_male.style.color = "black"
+                logo_male.style.color = "white"
 
       var text_male_button = document.getElementById(
                     "name_female"
@@ -394,6 +394,10 @@ var text_male_button = document.getElementById(
                 );
                 text_male_button.style.color = "black"
 
+      var logo_male = document.getElementById(
+                    "male_icon"
+                );
+                logo_male.style.color = "black"
 
 
 

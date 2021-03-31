@@ -202,7 +202,7 @@ export default function UserDashboardMain() {
     };
 
     return ( <
-        LeadContainer > { " " } {
+        LeadContainer className="main_screen" > { " " } {
             toggleBMI && ( <
                 BmiMain closeBMI = { closeBMI }
                 toggleReportBMI = { toggleBMIReportVisibility }
@@ -288,26 +288,26 @@ export default function UserDashboardMain() {
            < ForeFrontText style={{marginLeft:"02px", display:"flex",alignItems: 'center', justifyContent: 'center', marginTop:"0px"}} > { userGender } </ForeFrontText> </div>
 
           </div>
-            <FormContent style={{width:"100%", display:"flex", flexDirection: 'row', alignItems: 'center',justifyContent: 'space-between',marginLeft:"70px"}}> 
+            <FormContent style={{width:"90%", display:"flex", flexDirection: 'row', alignItems: 'center',justifyContent: 'space-between',marginLeft:"0px"}}> 
             <div style={{margin:"20px", display:"flex", flexDirection: 'row',}}>
                        <MailIcon style={{marginRight:"10px"}}/>
             <ForeFrontText  > { user.email } </ForeFrontText>
        </div>
-                        <div style={{margin:"50px", display:"flex", flexDirection: 'row',}}>
+                        <div style={{marginTop:"50px",marginBottom:"50px",marginRight:"170px", display:"flex", flexDirection: 'row',}}>
                          <PhoneIcon style={{marginRight:"10px"}}/>
 
         <ForeFrontText > { phone } </ForeFrontText>
              </div>
            </FormContent>
-             <FormContent style={{width:"100%", display:"flex", flexDirection: 'row', alignItems: 'center',justifyContent: 'space-between', marginLeft:"70px"}}> 
+             <FormContent style={{width:"90%", display:"flex",flexWrap: "wrap",flexDirection: 'row', alignItems: 'center',justifyContent: 'space-between', marginLeft:"0px"}}> 
             <div style={{margin:"20px", display:"flex", flexDirection: 'row'}}>
              <HomeIcon style={{marginRight:"10px",}}/>
-<div style={{display:"flex", flexDirection: 'column',}}>
+<div style={{display:"flex", flexDirection: 'column'}}>
  
 <ForeFrontText > Primary Address </ForeFrontText>
-        <ForeFrontText > { user.primary_address_line1  } </ForeFrontText>
+        <ForeFrontText style={{fontWeight:"300"}} > { user.primary_address_line1  } </ForeFrontText>
         
-             <ForeFrontText > { user.primary_address_line2  } </ForeFrontText>
+             <ForeFrontText style={{fontWeight:"300"}} > { user.primary_address_line2  } </ForeFrontText>
         </div>
         
 
@@ -317,12 +317,13 @@ export default function UserDashboardMain() {
 
  
        </div>
-                        <div style={{margin:"20px", display:"flex", flexDirection: 'row',marginLeft:"50px"}}>
+                        <div style={{marginTop:"50px",marginBottom:"50px",marginRight:"160px", display:"flex", flexDirection: 'row',}}>
                         
                          <HomeIcon style={{marginRight:"10px"}}/>
 <div style={{display:"flex", flexDirection: 'column',}}>
-<ForeFrontText > Secoonadry Address </ForeFrontText>
-        <ForeFrontText  > { user.secondary_address_line1  } </ForeFrontText></div>
+<ForeFrontText > Secondry Address </ForeFrontText>
+        <ForeFrontText   style={{fontWeight:"300"}}> { user.secondary_address_line1  } </ForeFrontText>
+          <ForeFrontText   style={{fontWeight:"300"}}> { user.secondary_address_line2  } </ForeFrontText></div>
              </div>
            </FormContent>
                
@@ -358,7 +359,7 @@ export default function UserDashboardMain() {
         
         }>
         UPDATE PROFILE { " " } </Button>{" "}
-            <Modal show={show} onHide={handleClose} size={`xl`} >
+            <Modal show={show} onHide={handleClose} size={`xl`} style={{marginTop:"40px"}} >
         <Modal.Header closeButton>
           <Modal.Title>Update User</Modal.Title>
         </Modal.Header>
@@ -382,12 +383,12 @@ export default function UserDashboardMain() {
         } >
         CHANGE PASSWORD </Button>
  
-            <Modal show={show1} onHide={handleClose1} size={`xl`} style={{height:"900"}} >
+            <Modal show={show1} onHide={handleClose1} size={`xl`} style={{height:"900",marginTop:"300px", backgroundColor: "transparent",}} >
         <Modal.Header closeButton>
           <Modal.Title>Change Password</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Change_pro/>
+        <Change_pro />
      
         {/* <Forms firstname={user.first_name} lastname={ user.last_name } phone={phone} email={ user.email } addline1={ user.primary_address_line1  } sedline1={user.secondary_address_line2} sedline2={user.secondary_address_line2} addline2={ user.primary_address_line2  } age={ user.age } gender= { userGender }  bmi= { parseFloat(user.bmi).toFixed(1) } cal= { user.recommended_calories } */}
 </Modal.Body>
