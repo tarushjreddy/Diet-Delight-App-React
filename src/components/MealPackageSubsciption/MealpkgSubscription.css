@@ -143,6 +143,9 @@ div.vertical_line {
   div.meal_choosecontainer {
     margin: 0 0 50px 0;
     height: 80px;
+    top: 0;
+    min-width: 100%;
+    position: fixed;
     background: white;
   }
   div.main_container_mealpkg {

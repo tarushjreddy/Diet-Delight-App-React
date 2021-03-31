@@ -135,8 +135,6 @@ const [PrettoSlider_toggle, setsliderValue] = React.useState("");
 
 
 
-
-
   const handleChange = (event, newValue) => {
     timeout && clearTimeout(timeout);
     timeout = setTimeout(() => {
@@ -348,8 +346,8 @@ const [PrettoSlider_toggle, setsliderValue] = React.useState("");
                     "maleContainer"
                 );
                
-                var selectMale = document.getElementById("male");
-                selectMale.style.color = "#fff";
+                // var selectMale = document.getElementById("male");
+                // selectMale.style.color = "#fff";
                    var nextbutton_femal = document.getElementById(
                     "nextButton_female"
                 );
@@ -452,8 +450,8 @@ var text_male_button = document.getElementById(
                 var selectMaleContainer = document.getElementById(
                     "maleContainer"
                 );
-                var selectMale = document.getElementById("male");
-                selectMale.style.color = "#000";
+                // var selectMale = document.getElementById("male");
+                // selectMale.style.color = "#000";
                 selectMaleContainer.style.background = "#fff";
                 setGender("female");
                 console.log("female");

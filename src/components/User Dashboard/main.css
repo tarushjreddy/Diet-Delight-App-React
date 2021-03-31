@@ -16,3 +16,9 @@
     min-height: 100%;
     border-radius: 0;
  }
+
+.final_button:hover{
+  background-color: transparent;
+  color: #8bc53f;
+  border: 2px solid #8bc53f;
+}

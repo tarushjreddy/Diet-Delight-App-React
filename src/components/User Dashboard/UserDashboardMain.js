@@ -36,11 +36,25 @@ import { Link, useHistory } from "react-router-dom";
 import BmiMain from "../BMI/BmiMain";
 import Bmireport from "../BMI Report/Bmireport";
 import ChangePassword from "../Auth/ResetChangePassword/ChangePassword";
+import Change_pro from "../Auth/ResetChangePassword/change_pro";
 export default function UserDashboardMain() {
       const [show, setShow] = useState(false);
+     const [show1, setShow1] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+   const handleClose1 = () => setShow1(false);
+  const handleShow = () => { setShow(true)
+  handleUpdate();
+
+  
+  
+  };
+   const handleShow1 = () => { setShow1(true)
+  handleUpdate1();
+
+  
+  
+  };
     let history = useHistory();
     const [user, setUser] = useState({});
     const [firstName, setFirstName] = useState("");
@@ -98,10 +112,15 @@ export default function UserDashboardMain() {
                 }
             });
     };
+ 
 
     const handleUpdate = () => {
         console.log("handled update");
         setEditProfile(false);
+    };
+     const handleUpdate1 = () => {
+        console.log("handled update");
+   
     };
 
     const closeBMI = () => {
@@ -274,19 +293,22 @@ export default function UserDashboardMain() {
                        <MailIcon style={{marginRight:"10px"}}/>
             <ForeFrontText  > { user.email } </ForeFrontText>
        </div>
-                        <div style={{margin:"20px", display:"flex", flexDirection: 'row',}}>
+                        <div style={{margin:"50px", display:"flex", flexDirection: 'row',}}>
                          <PhoneIcon style={{marginRight:"10px"}}/>
 
         <ForeFrontText > { phone } </ForeFrontText>
              </div>
            </FormContent>
-             <FormContent style={{width:"100%", display:"flex", flexDirection: 'row', alignItems: 'center',justifyContent: 'space-between', marginLeft:"90px"}}> 
+             <FormContent style={{width:"100%", display:"flex", flexDirection: 'row', alignItems: 'center',justifyContent: 'space-between', marginLeft:"70px"}}> 
             <div style={{margin:"20px", display:"flex", flexDirection: 'row'}}>
-             <HomeIcon style={{marginRight:"10px"}}/>
+             <HomeIcon style={{marginRight:"10px",}}/>
 <div style={{display:"flex", flexDirection: 'column',}}>
  
 <ForeFrontText > Primary Address </ForeFrontText>
-        <ForeFrontText > { user.primary_address_line1  } </ForeFrontText></div>
+        <ForeFrontText > { user.primary_address_line1  } </ForeFrontText>
+        
+             <ForeFrontText > { user.primary_address_line2  } </ForeFrontText>
+        </div>
         
 
 
@@ -295,7 +317,7 @@ export default function UserDashboardMain() {
 
  
        </div>
-                        <div style={{margin:"20px", display:"flex", flexDirection: 'row',}}>
+                        <div style={{margin:"20px", display:"flex", flexDirection: 'row',marginLeft:"50px"}}>
                         
                          <HomeIcon style={{marginRight:"10px"}}/>
 <div style={{display:"flex", flexDirection: 'column',}}>
@@ -319,7 +341,7 @@ export default function UserDashboardMain() {
 
 
   
- <Button  style={{width:"200px", marginRight:"50px"}} onClick={() => setToggleBMI(true)}>
+ <Button className="final_button" style={{width:"200px", marginRight:"50px"}} onClick={() => setToggleBMI(true)}>
                 RECALCULATE BMI{" "}
               </Button>
               {/* <Forms /> */}
@@ -327,14 +349,22 @@ export default function UserDashboardMain() {
  
       <
         /Link>{" "}
-        <Button style={{width:"220px",marginTop: "30px",}} onClick={handleShow}>
-        UPDATE PROFILE { " " } <
-        /Button>{" "}
+        <Button className="final_button" style={{width:"220px",marginTop: "30px",}} onClick={
+        
+         (e) => {
+                e.preventDefault();
+            handleShow()
+            }
+        
+        }>
+        UPDATE PROFILE { " " } </Button>{" "}
             <Modal show={show} onHide={handleClose} size={`xl`} >
         <Modal.Header closeButton>
           <Modal.Title>Update User</Modal.Title>
         </Modal.Header>
-        <Modal.Body><Forms firstname={user.first_name} lastname={ user.last_name } phone={phone} email={ user.email } addline1={ user.secondary_address_line1  } addline2={ user.primary_address_line1  } age={ user.age } gender= { userGender }  bmi= { parseFloat(user.bmi).toFixed(1) } cal= { user.recommended_calories }
+        <Modal.Body>
+     
+        <Forms firstname={user.first_name} lastname={ user.last_name } phone={phone} email={ user.email } addline1={ user.primary_address_line1  } sedline1={user.secondary_address_line2} sedline2={user.secondary_address_line2} addline2={ user.primary_address_line2  } age={ user.age } gender= { userGender }  bmi= { parseFloat(user.bmi).toFixed(1) } cal= { user.recommended_calories }
  /></Modal.Body>
         {/* <Modal.Footer>
          
@@ -344,27 +374,32 @@ export default function UserDashboardMain() {
         </Modal.Footer> */}
       </Modal>
         
-     <
-        Button onClick = {
+     <Button className="final_button" onClick = {
             (e) => {
                 e.preventDefault();
-                setToggleChangePassword(true);
+                handleShow1();
             }
         } >
-        CHANGE PASSWORD { " " } <
-        /Button>{" "}
-    
+        CHANGE PASSWORD </Button>
+ 
+            <Modal show={show1} onHide={handleClose1} size={`xl`} style={{height:"900"}} >
+        <Modal.Header closeButton>
+          <Modal.Title>Change Password</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <Change_pro/>
+     
+        {/* <Forms firstname={user.first_name} lastname={ user.last_name } phone={phone} email={ user.email } addline1={ user.primary_address_line1  } sedline1={user.secondary_address_line2} sedline2={user.secondary_address_line2} addline2={ user.primary_address_line2  } age={ user.age } gender= { userGender }  bmi= { parseFloat(user.bmi).toFixed(1) } cal= { user.recommended_calories } */}
+</Modal.Body>
+ </Modal>
         
-        
-         <
-        /LeftContainer>{" "} <
-        /MainContainer>{" "} <
-        /GrandContainer2>{" "} <
+         </LeftContainer>{" "} </MainContainer>{" "} </GrandContainer2>
+          <
         /GrandContainer>{" "}
         
 
-   <
-        /LeadContainer>
+   </LeadContainer>
          
     );
 }
+
