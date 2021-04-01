@@ -1,18 +1,35 @@
 import styled from "styled-components";
 import backgroundImage from "./sample.jpeg";
-export const LeadContainer = styled.div `
+export const LeadContainer = styled.div`
   position: relative;
   height: 100%;
-  width: 100%;
+  min-width: 50%;
+  color: red;
   background-image: url(${backgroundImage});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
+
   background-attachment: fixed;
+  @media only screen and (max-width: 750px) {
+    min-width: 100vw;
+    height: auto;
+
+    flex-direction: column;
+  }
+  @media only screen and (min-width: 100px) and (max-width: 500px) {
+    width: 100vw;
+    height: auto;
+    justify-content: space-between;
+    padding: 0px;
+    margin: 0px;
+
+    flex-direction: column;
+  }
 `;
 
-export const GrandContainer = styled.div `
+export const GrandContainer = styled.div`
   display: flex;
   height: auto;
   align-items: center;
@@ -20,7 +37,7 @@ export const GrandContainer = styled.div `
   flex-direction: row;
   border-radius: 20px;
   margin-top: 3%;
-  margin-right: 10%;
+
   border: none;
   @media only screen and (max-width: 750px) {
     width: auto;
@@ -35,10 +52,12 @@ export const GrandContainer = styled.div `
   }
 `;
 
-export const GrandContainer2 = styled.div `
+export const GrandContainer2 = styled.div`
   display: flex;
+  text-align: center;
   height: auto;
-  width: 80%;
+  width: 90%;
+  background-color: transparent;
   align-items: center;
   flex-direction: column;
   border-radius: 20px;
@@ -59,19 +78,21 @@ export const GrandContainer2 = styled.div `
   }
 `;
 
-export const MainContainer = styled.div `
+export const MainContainer = styled.div`
   display: flex;
   align-items: center;
+  justify_content: center;
   flex-direction: row;
   border-radius: 20px;
   margin-top: 3%;
   margin-bottom: 2%;
   padding-bottom: 2%;
   width: 100%;
-  background-color: rgba(119, 131, 143, 0.1);
+
   @media only screen and (max-width: 750px) {
     width: 100%;
-    height: auto;
+    margin-top: 80px;
+
     flex-direction: column;
   }
   @media only screen and (min-width: 1440px) {
@@ -80,7 +101,7 @@ export const MainContainer = styled.div `
   }
 `;
 
-export const UpperContainer = styled.div `
+export const UpperContainer = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: left;
@@ -92,54 +113,98 @@ export const UpperContainer = styled.div `
     margin-left: 2%;
     margin-right: 2%;
     margin-top: 1%;
+
     margin-bottom: 1%;
     flex-direction: column;
   }
 `;
 
-export const UpperLeftContainer = styled.div `
-  display: flex;
-  flex-direction: column;
+export const UpperLeftContainer = styled.div`
+display:flex;
+flex-direction: column;
+align-items: baseline;
+justify-content: sl;
+text-align: left;
+
+ 
+
+
+   color: #303960,
+
+                    fontFamily: "Roboto",
+                    fontWeight: "700",
+                    margin: "0px",
+                    fontSize: "20px"
 `;
 
-export const UpperMiddleContainer = styled.div `
+export const UpperMiddleContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 25%;
+  flex-wrap: wrap;
+  margin-left: "10px";
+  justify-content: center;
+  align-items: center;
+  @media only screen and (min-width: 100px) and (max-width: 700px) {
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
-export const RoundCircle = styled.div `
+export const RoundCircle = styled.div`
   background-color: #6f42c1;
   border-radius: 50%;
+  margin-left: 50px;
+  margin-right: 90px;
   border: 10px solid #ac83f7;
   padding: 20px 12px 20px 12px;
-  margin-left: 5%;
-  margin-right: 5%;
+  justify-content: center;
+
   display: grid;
+  width: 300px;
   place-items: center;
   background-clip: padding-box;
+  @media only screen and (min-width: 100px) and (max-width: 700px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 90px;
+  }
 `;
 
-export const InsideCircleText = styled.span `
+export const InsideCircleText = styled.span`
   height: auto;
   font-size: 60px;
   color: #fff;
   font-weight: 700;
+  @media only screen and (min-width: 100px) and (max-width: 700px) {
+    font-weight: 500;
+    font-size: 50px;
+  }
 `;
 
-export const UpperRightContainerText = styled.span `
+export const UpperRightContainerText = styled.span`
   color: #000;
-  font-size: 25px;
-  font-weight: 700;
+font-size: 30px;
+  font-weight: 500;
+  color: #303960;
+                fontFamily: Roboto;
+                margin
+          
 `;
 
-export const LeftContainer = styled.div `
+export const LeftContainer = styled.div`
   height: auto;
   width: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
   font-weight: 500;
   @media only screen and (max-width: 750px) {
     width: auto;
     height: auto;
+    flex-direction: column;
+    margin-top: 50px;
   }
   @media only screen and (min-width: 1440px) {
     margin-bottom: 20px;
@@ -161,37 +226,41 @@ export const LeftContainer = styled.div `
 //   }
 // `;
 
-export const ForeFrontText = styled.div `
+export const ForeFrontText = styled.div`
+  color: #303960;
 
-padding:0px;
-  color:#303960;
+  color: #303960;
+  display: flex;
+  align-items: baseline;
+  fontfamily: Roboto;
+  fontweight: 700;
 
-  font-size:"48px";
+  font-size: "60px";
   font-weight: bold;
   @media only screen and (max-width: 945px) {
-    width: 30%;
-    height: auto;
   }
-  @media only screen and (max-width: 750px) {
-    width: 30%;
-    height: auto;
+  @media only screen and (min-width: 100px) and (maz-width: 700px) {
+    padding: 0px;
+    margin: 0px;
   }
 `;
 
-export const FormContent = styled.div `
-background-color: transparent;
-color:#303960;
-width:50%;
-   fontFamily: "Roboto",
-                fontWeight: "700",
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: center;
-text-align: center;
+export const FormContent = styled.div`
+  color: #303960;
+  margin-bottom: 30px;
+
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 50px;
+  @media only screen and (min-width: 100px) and (max-width: 700px) {
+    flex-direction: column;
+  }
 `;
 
-export const Button = styled.button `
+export const Button = styled.button`
   background-color: #8bc441;
   min-width:210px
   max-width:auto;
@@ -211,7 +280,7 @@ export const Button = styled.button `
   }
 `;
 
-export const BMIButton = styled.button `
+export const BMIButton = styled.button`
   background-color: #8bc441;
   margin-top: 30px;
   color: white;
@@ -231,10 +300,9 @@ export const BMIButton = styled.button `
 `;
 
 export const Input = styled.input.attrs((props) => ({
-    type: "text",
-    defaultValue: props.defaultValue,
-}))
-`
+  type: "text",
+  defaultValue: props.defaultValue,
+}))`
   width: 50%;
   margin-left: 5%;
   padding-left: 5px;
@@ -253,10 +321,9 @@ export const Input = styled.input.attrs((props) => ({
 `;
 
 export const EmailInput = styled.input.attrs((props) => ({
-    type: "email",
-    defaultValue: props.defaultValue,
-}))
-`
+  type: "email",
+  defaultValue: props.defaultValue,
+}))`
   width: 50%;
   margin-left: 5%;
   padding-left: 5px;
@@ -276,9 +343,8 @@ export const EmailInput = styled.input.attrs((props) => ({
 `;
 
 export const Anchor = styled.a.attrs({
-    href: "",
-})
-`
+  href: "",
+})`
   color: #8bc441;
   margin-left: 5%;
   text-decoration: none;
@@ -288,9 +354,8 @@ export const Anchor = styled.a.attrs({
 `;
 
 export const TextArea = styled.textarea.attrs((props) => ({
-    defaultValue: props.defaultValue,
-}))
-`
+  defaultValue: props.defaultValue,
+}))`
   margin-left: 5%;
   height: 20%;
   width: 50%;
@@ -309,8 +374,6 @@ export const TextArea = styled.textarea.attrs((props) => ({
   }
 `;
 
-
-
 // import styled from 'styled-components'
 // import backgroundImage from '../../assets/choose-meal-plan.jpg';
 
@@ -321,7 +384,7 @@ export const TextArea = styled.textarea.attrs((props) => ({
 // background-image: url(${backgroundImage});
 // background-position: center;
 // background-repeat: no-repeat;
-// background-size: cover; 
+// background-size: cover;
 // min-height:100vh;
 // background-attachment:fixed;
 // `;
@@ -423,7 +486,6 @@ export const TextArea = styled.textarea.attrs((props) => ({
 // font-weight:700;
 // `;
 
-
 // export const LeftContainer = styled.div`
 // height:auto;
 // width:50%;
@@ -452,7 +514,6 @@ export const TextArea = styled.textarea.attrs((props) => ({
 // }
 // `
 
-
 // export const ForeFrontText = styled.div`
 // margin-left:5%;
 // width:30%;
@@ -476,7 +537,7 @@ export const TextArea = styled.textarea.attrs((props) => ({
 //     flex-direction:row;
 //     width:100%;
 //     float:left;
-    
+
 // }
 // `
 
@@ -499,7 +560,6 @@ export const TextArea = styled.textarea.attrs((props) => ({
 // }
 // `
 
-
 // export const BMIButton = styled.button`
 // background-color:#8BC441;
 // margin-top:30px;
@@ -518,7 +578,6 @@ export const TextArea = styled.textarea.attrs((props) => ({
 //     margin-right:0;
 // }
 // `
-
 
 // export const Input = styled.input.attrs(props => ({
 //     type: "text",
@@ -560,10 +619,9 @@ export const TextArea = styled.textarea.attrs((props) => ({
 // }
 // @media only screen and (max-width:600px){
 //     margin-left:15%;
-    
+
 // }
 // `;
-
 
 // export const Anchor = styled.a.attrs({
 //     href:""
@@ -574,7 +632,6 @@ export const TextArea = styled.textarea.attrs((props) => ({
 // @media only screen and (max-width:750px){
 //     margin-left:8%;
 // }`;
-
 
 // export const TextArea = styled.textarea.attrs(props => ({
 //     defaultValue:props.defaultValue
@@ -591,11 +648,10 @@ export const TextArea = styled.textarea.attrs((props) => ({
 //     margin:0;
 //     padding:0;
 //     margin-right:10%;
-    
-    
+
 //     @media only screen and (max-width:600px){
 //         margin-left:10%;
 //     }
-    
+
 // }
 // `;

@@ -3,6 +3,12 @@
     justify-content: center;
     background-color: #303960
 }
+#name_male{
+color: #303960;
+}
+#name_female{
+color: #303960;
+}
 @import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
 div.bmi_main_container{
     display: grid;

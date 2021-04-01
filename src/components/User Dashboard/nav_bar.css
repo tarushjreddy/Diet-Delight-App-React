@@ -5,10 +5,15 @@
     background-color: white;
     color: black;
     align-items: center;
+    position: fixed;
+    top: 0;
 
    
     justify-content: space-between;
 }
+ a.choose_your_meal_text:hover{
+     color: #78288b;
+   }
 .header{
     display: flex;
 
@@ -16,6 +21,7 @@
 }
 .link_header{
      padding: 0.6rem;
+         font-size: 24px;
       font-size: 10px;
       font-weight: 900;
       font-size: 1.5rem;
@@ -26,7 +32,9 @@
 .options_btn{
     display: none;
     padding-right: 30px;
+    font-size: 24px;
 }
+
 .logo_pro{
     padding-left:10px;
     height: 50px;

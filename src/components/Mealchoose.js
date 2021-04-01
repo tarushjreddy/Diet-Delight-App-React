@@ -39,23 +39,18 @@ export default function Mealchoose(props) {
           {props.name}
         </a>
 
-        <div
-      
-  
-          className="options"
-        >
+        <div className="options">
           <a href="/" className="choose_your_meal_text2">
-            Consulting
+            CONSULTING
           </a>
           <a href="/" className="choose_your_meal_text2">
-            Meal Plan
+            MEAL PLAN
           </a>
           <a href="/" className="choose_your_meal_text2">
-            Logout
+            LOGOUT
           </a>
         </div>
         <DropdownButton
-        
           title="v"
           variant="secondary"
           style={{ display: "none" }}
