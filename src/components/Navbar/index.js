@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Nav, NavbarContainer, NavLogo, MobileIcon, NavMenu, NavItem, NavLinks, NavBtnlink, NavButton, NavMenuUp, NavMenuDown } from './NavbarElement';
-
+import DropdownButton from 'react-bootstrap/DropdownButton'
+import Dropdown from 'react-bootstrap/Dropdown'
 import { FaBars, FaUserCircle,FaShoppingBag,FaRegHeart, FaRegClock} from 'react-icons/fa'
 import logo from "../../assets/logo.png"
 
@@ -244,7 +245,7 @@ const Navbar = ({ toggle }) => {
                             </div>
                             </>) : null}
                             </NavMenuDown>
-                            </NavMenu>
+                                  </NavMenu>
                             </NavbarContainer>
                             
                             </Nav>

@@ -6,6 +6,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import PhoneIcon from '@material-ui/icons/Phone';
 import HomeIcon from '@material-ui/icons/Home';
 import Mealchoose from "../Mealchoose";
+import Nav_ud from "./nav_ud.js";
 import Popup from 'reactjs-popup';
 import Modal from 'react-bootstrap/Modal'
 import 'reactjs-popup/dist/index.css';
@@ -202,7 +203,7 @@ export default function UserDashboardMain() {
     };
 
     return ( <
-        LeadContainer className="main_screen" > { " " } {
+        LeadContainer  > { " " } {
             toggleBMI && ( <
                 BmiMain closeBMI = { closeBMI }
                 toggleReportBMI = { toggleBMIReportVisibility }
@@ -220,12 +221,14 @@ export default function UserDashboardMain() {
                 toggleReport = { toggleReport }
                 />
             )
-        } { " " } { /* <img src={logo_web} className="logo_web"></img> */ } { " " } <
-        Mealchoose name = "User Dashboard" / >
+        } { " " } { /* <img src={logo_web} className="logo_web"></img> */ } { " " } 
+       
+        
+         <Nav_ud name="User Dashboard"/>
         <
         GrandContainer  >
         <
-        GrandContainer2 style={{backgroundColor:"transparent", width:"50%"}} >
+        GrandContainer2 className="main_grandContainer" style={{backgroundColor:"transparent", width:"50%"}} >
         <
         UpperContainer style={{backgroundColor:"transparent", display:"flex", alignItems: 'center',justifyContent: 'space-around',}} >
         <
